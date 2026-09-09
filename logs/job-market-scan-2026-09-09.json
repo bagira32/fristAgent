@@ -1,0 +1,114 @@
+{
+  "run_id": "job-market-scan-2026-09-09",
+  "workflow": "job-market-scan",
+  "date": "2026-09-09",
+  "trigger": "manual test run",
+  "report": "output/job-market-scan-2026-09-09.md",
+  "results": {
+    "raw_hits_collected": 60,
+    "passed_all_filters_and_validation": 1,
+    "final_shortlist": 1,
+    "dropped_after_filter_or_validation": 59
+  },
+  "token_usage": {
+    "note": "Subagent totals are exact (reported by the harness on completion). Main-thread usage is NOT exact - Claude has no tool that reports its own token count - the figure below is a rough proxy from tool-call volume, not a real measurement.",
+    "subagents": [
+      { "label": "energy-sector collection", "tokens": 95164, "tool_uses": 49, "duration_ms": 228746 },
+      { "label": "cloud-native tech collection", "tokens": 85651, "tool_uses": 41, "duration_ms": 127922 },
+      { "label": "aggregator/LinkedIn collection", "tokens": 61710, "tool_uses": 28, "duration_ms": 113941 }
+    ],
+    "subagent_total_tokens": 242525,
+    "subagent_total_tool_uses": 118,
+    "main_thread_tool_calls_estimate": {
+      "web_fetch": 19,
+      "bash_curl_api_calls": 23,
+      "web_search": 8,
+      "note": "main-thread token count not measurable from inside the session; 50 direct tool calls is the only concrete proxy available"
+    }
+  },
+  "timing": {
+    "step2_collection_minutes_approx": 6,
+    "step3_3.5_filter_and_validation_minutes_approx": 18,
+    "step5_report_writing_minutes_approx": 3,
+    "note": "approximate, derived from subagent duration_ms plus wall-clock ordering of tool calls in the transcript, not instrumented"
+  },
+  "source_coverage": {
+    "energy_sector": {
+      "queried": ["Octopus Energy/Kraken Technologies", "Tesla Energy", "Sunrun", "Sunnova", "Enphase",
+        "ChargePoint", "EVgo", "Constellation", "NextEra", "Duke Energy", "Exelon", "Schneider Electric",
+        "Siemens Energy", "Uplight", "AutoGrid", "GridX", "Arcadia", "David Energy", "Crusoe Energy",
+        "Hut 8", "Palantir"],
+      "yielded_raw_hits": ["Tesla Energy", "EVgo", "Uplight", "Palantir", "Schneider Electric", "Kraken Technologies"],
+      "no_qualifying_hit_found": ["Sunrun", "Sunnova", "Enphase", "ChargePoint", "Constellation", "NextEra",
+        "Duke Energy", "Exelon", "Siemens Energy", "AutoGrid", "GridX", "Arcadia", "David Energy",
+        "Crusoe Energy", "Hut 8"],
+      "passed_validation": []
+    },
+    "cloud_native_tech": {
+      "queried": ["HashiCorp", "Datadog", "Elastic", "Grafana Labs", "Chronosphere", "Honeycomb",
+        "Cloudflare", "Fastly", "GitLab", "GitHub", "Red Hat", "Canonical", "SUSE", "CrowdStrike",
+        "Wiz", "Snyk", "Sysdig", "Tenable", "Palo Alto Networks", "Stripe", "Shopify", "Reddit", "DuckDuckGo"],
+      "yielded_raw_hits": ["GitLab", "Reddit", "Wiz", "Palo Alto Networks", "Canonical", "Elastic",
+        "Grafana Labs", "Honeycomb", "CrowdStrike", "Cloudflare", "Sysdig", "DuckDuckGo", "Tenable",
+        "Fastly", "Shopify", "Stripe"],
+      "no_qualifying_hit_found": ["HashiCorp", "Datadog", "Red Hat", "SUSE", "Snyk", "GitHub", "Chronosphere"],
+      "passed_validation": []
+    },
+    "aggregators_and_linkedin": {
+      "queried": ["WeWorkRemotely", "Wellfound", "RemoteOK", "LinkedIn Jobs"],
+      "yielded_raw_hits": ["WeWorkRemotely", "Wellfound", "LinkedIn"],
+      "no_qualifying_hit_found": ["RemoteOK"],
+      "passed_validation": []
+    },
+    "note": "passed_validation lists left empty above deliberately - the only role that survived full validation (Garner Health) was originally sourced via Wellfound but re-verified on Garner Health's own Greenhouse board, so it is credited to the ATS validation entry below, not a source-group tally."
+  },
+  "sites_visited": [
+    { "url": "https://www.tesla.com/en_SA/careers/search/job/sr-site-reliability-engineer-energy-software-246637", "method": "WebFetch", "status": "403_FORBIDDEN", "outcome": "dropped - inconclusive" },
+    { "url": "https://tesla.com/careers/search/job/staff-site-reliability-engineer-energy-software-259435", "method": "WebFetch", "status": "403_FORBIDDEN", "outcome": "dropped - inconclusive" },
+    { "url": "https://jobs.jobvite.com/uplight/job/oMoTzfwm", "method": "WebFetch", "status": "RESOLVED_TO_GENERIC_HUB", "outcome": "dropped - dead/removed" },
+    { "url": "https://canonical.com/careers/1747487/site-reliability-engineer-americas-remote", "method": "WebFetch", "status": "LIVE", "outcome": "dropped - no Terraform/Ansible named (filter fail)" },
+    { "url": "https://jobs.paloaltonetworks.com/en/job/santa-clara/senior-site-reliability-engineer-cortex/47263/83597413328", "method": "WebFetch", "status": "RESOLVED_TO_GENERIC_HUB", "outcome": "dropped - dead/removed" },
+    { "url": "https://crowdstrike.wd5.myworkdayjobs.com/en-US/crowdstrikecareers/job/Senior-AI-Infrastructure-Engineer--LLM-AI-Platforms_R29213", "method": "WebFetch", "status": "EMPTY_SPA_RENDER", "outcome": "dropped - inconclusive" },
+    { "url": "https://crowdstrike.wd5.myworkdayjobs.com/en-US/crowdstrikecareers/job/USA---Remote/Site-Reliability-Engineer---Cloud--Remote-_R6558", "method": "WebFetch", "status": "EMPTY_SPA_RENDER", "outcome": "dropped - inconclusive" },
+    { "url": "https://weworkremotely.com/remote-jobs/southwest-power-pool-devops-sre-senior-or-lead-remote-eligible", "method": "WebFetch", "status": "403_FORBIDDEN", "outcome": "dropped - inconclusive" },
+    { "url": "https://weworkremotely.com/remote-jobs/five9-senior-devops-engineer", "method": "WebFetch", "status": "403_FORBIDDEN", "outcome": "dropped - inconclusive" },
+    { "url": "https://wellfound.com/jobs/4039039-2-senior-devsecops-engineer", "method": "WebFetch", "status": "410_GONE", "outcome": "dropped - dead" },
+    { "url": "https://www.linkedin.com/jobs/view/senior-platform-engineer-at-the-farmer-s-dog-3335562700", "method": "WebFetch", "status": "INCONCLUSIVE_LOGIN_WALL", "outcome": "dropped - inconclusive, re-sourced via direct ATS instead" },
+    { "url": "https://www.spp.org/careers/", "method": "WebFetch", "status": "LIVE_GENERIC_PAGE", "outcome": "no specific posting URL found" },
+    { "url": "https://jobs.jobvite.com/evgo/job/oki1ufwR", "method": "WebFetch", "status": "302_REDIRECT_TO_INVALID", "outcome": "dropped - dead" },
+    { "url": "https://careers.se.com/jobs/103256?lang=en-us", "method": "WebFetch", "status": "403_FORBIDDEN", "outcome": "dropped - inconclusive" },
+    { "url": "https://jobs.ashbyhq.com/duck-duck-go/9f845ea5-4bdd-432a-8266-7febe26c7163", "method": "WebFetch", "status": "EMPTY_SPA_RENDER", "outcome": "dropped - inconclusive" },
+    { "url": "https://www.hyperproof.io/careers", "method": "WebFetch", "status": "LIVE_GENERIC_PAGE", "outcome": "no specific posting URL found" },
+    { "url": "https://www.five9.com/company/careers", "method": "WebFetch", "status": "404_NOT_FOUND", "outcome": "dropped - dead" },
+    { "url": "https://recruiting2.ultipro.com/SOU1052SPPI/JobBoard/bc99b5f0-ed6b-436e-b545-2196af0704de/", "method": "WebFetch", "status": "JS_BLOCKED", "outcome": "dropped - inconclusive" },
+    { "url": "https://www.wiz.io/careers/job/4004645006/", "method": "WebFetch", "status": "404_NOT_FOUND", "outcome": "dropped - dead" }
+  ],
+  "api_hits": [
+    { "endpoint": "api.greenhouse.io/v1/boards/gitlab/jobs/8136108002", "ats": "Greenhouse", "status": "404", "outcome": "dropped - dead" },
+    { "endpoint": "api.greenhouse.io/v1/boards/gitlab/jobs/8490453002", "ats": "Greenhouse", "status": "404", "outcome": "dropped - dead" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/gitlab/jobs/8136108002", "ats": "Greenhouse", "status": "404", "outcome": "confirmed dead (retry on alt host)" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/gitlab/jobs/8490453002", "ats": "Greenhouse", "status": "404", "outcome": "confirmed dead (retry on alt host)" },
+    { "endpoint": "api.greenhouse.io/v1/boards/grafanalabs/jobs/5819644004", "ats": "Greenhouse", "status": "404", "outcome": "dropped - dead" },
+    { "endpoint": "api.greenhouse.io/v1/boards/grafanalabs/jobs/5807984004", "ats": "Greenhouse", "status": "404", "outcome": "dropped - dead" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/grafanalabs/jobs/5819644004", "ats": "Greenhouse", "status": "404", "outcome": "confirmed dead (retry on alt host)" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/grafanalabs/jobs/5807984004", "ats": "Greenhouse", "status": "404", "outcome": "confirmed dead (retry on alt host)" },
+    { "endpoint": "api.greenhouse.io/v1/boards/honeycomb/jobs/5247531008", "ats": "Greenhouse", "status": "404", "outcome": "dropped - dead" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/honeycomb/jobs/5247531008", "ats": "Greenhouse", "status": "404", "outcome": "confirmed dead (retry on alt host)" },
+    { "endpoint": "api.greenhouse.io/v1/boards/cloudflare/jobs/8087792", "ats": "Greenhouse", "status": "200", "outcome": "LIVE but Hybrid/onsite - filter fail" },
+    { "endpoint": "api.greenhouse.io/v1/boards/reddit/jobs/7909463", "ats": "Greenhouse", "status": "200", "outcome": "LIVE but San Francisco onsite - filter fail" },
+    { "endpoint": "api.greenhouse.io/v1/boards/garnerhealth/jobs/6147544004", "ats": "Greenhouse", "status": "404", "outcome": "dropped - dead" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/garnerhealth/jobs/6147544004", "ats": "Greenhouse", "status": "404", "outcome": "confirmed dead (retry on alt host)" },
+    { "endpoint": "api.greenhouse.io/v1/boards/garnerhealth/jobs/6180042004", "ats": "Greenhouse", "status": "200", "outcome": "PASS - only role that survived to final shortlist" },
+    { "endpoint": "api.greenhouse.io/v1/boards/thefarmersdog/jobs/8120734002", "ats": "Greenhouse", "status": "404", "outcome": "dropped - dead" },
+    { "endpoint": "api.ashbyhq.com/posting-api/job-board/duck-duck-go/9f845ea5-4bdd-432a-8266-7febe26c7163", "ats": "Ashby", "status": "401_unauthorized", "outcome": "dropped - inconclusive, org board not public via API" },
+    { "endpoint": "api.ashbyhq.com/posting-api/job-board/close/6610824b-2d94-4071-90e0-bafc3b078870", "ats": "Ashby", "status": "401_unauthorized", "outcome": "dropped - inconclusive" },
+    { "endpoint": "api.ashbyhq.com/posting-api/job-board/DuckDuckGo", "ats": "Ashby", "status": "404", "outcome": "org slug not found" },
+    { "endpoint": "api.ashbyhq.com/posting-api/job-board/duckduckgo", "ats": "Ashby", "status": "404", "outcome": "org slug not found" },
+    { "endpoint": "api.ashbyhq.com/posting-api/job-board/Close", "ats": "Ashby", "status": "200", "outcome": "LIVE list fetched (7 openings) - SRE posting not present, confirms dead" },
+    { "endpoint": "crowdstrike.wd5.myworkdayjobs.com/wday/cxs/crowdstrike/crowdstrikecareers/jobs", "ats": "Workday", "status": "200", "outcome": "listings-index search worked but did not surface the target req IDs" },
+    { "endpoint": "crowdstrike.wd5.myworkdayjobs.com/wday/cxs/.../job/USA---Remote/Site-Reliability-Engineer--Remote-_R19029-1", "ats": "Workday", "status": "403_permission_denied", "outcome": "dropped - inconclusive, direct per-job fetch blocked" }
+  ],
+  "sites_dropped_by_subagents_pre_validation": {
+    "note": "Collection subagents also hit sites directly (118 tool_uses across 3 agents) but those calls were not individually logged - only their rollup summaries were captured. Notable blocks they reported: RemoteOK tag pages (bot-blocked / placeholder content), WeWorkRemotely and Wellfound direct fetch (403/410)."
+  }
+}
