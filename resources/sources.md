@@ -1,7 +1,8 @@
 # Job Hunt Sources & Filter Criteria
 
-Reusable seed list for the **Cloud / DevOps / SRE — US-Remote** market scan.
-Last reviewed: 2026-05-12.
+Reusable seed list for the **Cloud / DevOps / SRE — US-Remote or Seattle-area**
+market scan.
+Last reviewed: 2026-09-10.
 
 ## Candidate profile (anchors the filter)
 
@@ -15,8 +16,13 @@ A role must hit **ALL three** must-haves to make a shortlist:
 1. **Linux + IaC** — Terraform and/or Ansible explicitly named in the JD.
 2. **Observability / SIEM / security angle** — SIEM, SOAR, detection engineering,
    log/telemetry pipelines, or strong observability ownership.
-3. **US-remote eligible** — open to US-based remote applicants, no state exclusion
-   blocking the candidate's location.
+3. **US-remote eligible, OR onsite/hybrid in the Seattle area** — either open to
+   US-based remote applicants (no state exclusion blocking the candidate's
+   location), or based in the Greater Seattle area — Seattle, Bellevue, Redmond,
+   Kirkland, Renton, Tacoma, Everett, or listed generically as "Seattle, WA" /
+   "Puget Sound." The candidate can commute to onsite/hybrid roles in this area,
+   so remote eligibility is not required for them. A city restriction *outside*
+   this area (e.g. "must be in Austin") still disqualifies a role.
 
 Nice-to-have (boost a match but not required):
 

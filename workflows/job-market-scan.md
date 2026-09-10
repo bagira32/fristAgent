@@ -74,11 +74,18 @@ Drop any role that fails any of:
 2. **Observability / SIEM / security angle** — JD must mention at least one of:
    SIEM, SOAR, detection engineering, log pipelines, telemetry, observability
    ownership, Datadog/Splunk/Elastic/Grafana, security tooling.
-3. **US-remote eligible** — JD must not exclude US-remote applicants. Watch for
-   "must be in [specific city]" or "EU only" disqualifiers. State exclusions
-   (e.g. "not CA/CO/NY") only matter if they hit the candidate's state.
+3. **US-remote eligible, OR onsite/hybrid in the Seattle area** — either the JD
+   doesn't exclude US-remote applicants (watch for "must be in [specific city]"
+   or "EU only" disqualifiers; state exclusions like "not CA/CO/NY" only matter
+   if they hit the candidate's state), OR the role is based in the Greater
+   Seattle area (Seattle, Bellevue, Redmond, Kirkland, Renton, Tacoma, Everett,
+   or listed generically as "Seattle, WA"/"Puget Sound") — the candidate can
+   commute, so onsite/hybrid is fine there specifically. A city restriction
+   *outside* the Seattle area still disqualifies a role even if remote isn't
+   required elsewhere in the JD.
 
-Tag any energy-sector match with `[ENERGY]` for the report.
+Tag any energy-sector match with `[ENERGY]`, and any Seattle-area onsite/hybrid
+match with `[SEATTLE]`, for the report.
 
 ## Step 3.5 — URL validation (REQUIRED, no role goes on the report without it)
 
@@ -162,8 +169,8 @@ Output path: `output/job-market-scan-YYYY-MM-DD.md` (use today's date).
 
 Sections (in order):
 
-1. **Summary** — ≤5 bullets: total found, energy-tagged count, top recurring
-   stack overlaps, any notable industry signal.
+1. **Summary** — ≤5 bullets: total found, energy-tagged count, Seattle-tagged
+   count, top recurring stack overlaps, any notable industry signal.
 2. **Top picks (3–5)** — each with 2–3 lines of rationale.
 3. **Full shortlist (10–15)** — bullet-per-role format below.
 4. **Sources & method** — list of sources actually queried, date, filter
@@ -171,8 +178,8 @@ Sections (in order):
 
 ### Per-role bullet format
 
-- **Title** — Company `[ENERGY]` if applicable
-- **Location**: US-remote (note any state restrictions)
+- **Title** — Company `[ENERGY]` / `[SEATTLE]` if applicable
+- **Location**: US-remote, or onsite/hybrid Seattle area (note any state/city restrictions)
 - **Stack match**: which of Linux / Terraform / Ansible / Python / SIEM / observability are explicitly named in the JD
 - **Why it fits**: one line tying the role to the candidate's background
 - **Apply link**: direct JD URL
