@@ -1,0 +1,67 @@
+{
+  "run_id": "job-market-scan-2026-09-10-b",
+  "workflow": "job-market-scan",
+  "date": "2026-09-10",
+  "trigger": "manual run (updated Seattle-area filter criteria)",
+  "report": "output/job-market-scan-2026-09-10.md",
+  "results": {
+    "raw_hits_collected": 55,
+    "passed_all_filters_and_validation": 3,
+    "final_shortlist": 3,
+    "dropped_after_filter_or_validation": 52
+  },
+  "token_usage": {
+    "note": "Subagent totals are exact (reported by the harness on completion). Main-thread usage is NOT exact - Claude has no tool that reports its own token count - the figure below is a rough proxy from tool-call volume, not a real measurement.",
+    "subagents": [
+      { "label": "energy-sector collection", "tokens": 117560, "tool_uses": 64, "duration_ms": 319296 },
+      { "label": "cloud-native tech + Seattle-majors collection", "tokens": 155142, "tool_uses": 75, "duration_ms": 484939 },
+      { "label": "LinkedIn collection", "tokens": 77771, "tool_uses": 24, "duration_ms": 172713 }
+    ],
+    "subagent_total_tokens": 350473,
+    "subagent_total_tool_uses": 163,
+    "main_thread_tool_calls_estimate": { "web_fetch": 18, "bash_curl_api_calls": 6, "web_search": 4 }
+  },
+  "timing": { "step2_collection_minutes_approx": 8, "step3_3.5_filter_and_validation_minutes_approx": 15, "step5_report_writing_minutes_approx": 4 },
+  "source_coverage": {
+    "energy_sector": {
+      "queried": ["Octopus Energy/Kraken Technologies","Tesla Energy","Sunrun","Sunnova","Enphase","ChargePoint","EVgo","Constellation","NextEra","Duke Energy","Exelon","Schneider Electric","Siemens Energy","Uplight","AutoGrid","GridX","Arcadia","David Energy","Crusoe Energy","Hut 8","Palantir","Southwest Power Pool","Leidos"],
+      "yielded_raw_hits": ["Octopus Energy/Kraken Technologies","Crusoe Energy","Palantir","Hut 8","Tesla Energy","Leidos","Southwest Power Pool","Constellation","Schneider Electric"]
+    },
+    "cloud_native_tech": {
+      "queried": ["HashiCorp","Datadog","Elastic","Grafana Labs","Chronosphere","Honeycomb","Cloudflare","Fastly","GitLab","GitHub","Red Hat","Canonical","SUSE","CrowdStrike","Wiz","Snyk","Sysdig","Tenable","Palo Alto Networks","Stripe","Shopify","Reddit","DuckDuckGo","Amazon","Microsoft","F5 Networks","T-Mobile","Nordstrom Tech"],
+      "yielded_raw_hits": ["CrowdStrike","GitLab","Reddit","Canonical","Amazon","HashiCorp","T-Mobile","DuckDuckGo","Microsoft","Red Hat","Palo Alto Networks"]
+    },
+    "aggregators_and_linkedin": {
+      "queried": ["LinkedIn Jobs"],
+      "yielded_raw_hits": ["LinkedIn Jobs"]
+    }
+  },
+  "sites_visited": [
+    { "url": "https://careers.leidos.com/jobs/17261500-senior-devsecops-engineer", "method": "WebFetch", "status": "403 Forbidden", "outcome": "dropped — inconclusive, no ATS API fallback for Leidos" },
+    { "url": "https://careers.leidos.com/jobs/17757785-senior-multi-cloud-engineer", "method": "WebFetch", "status": "403 Forbidden", "outcome": "dropped — inconclusive, no ATS API fallback" },
+    { "url": "https://careers.leidos.com/jobs/17712663-senior-unix-slash-linux-system-engineer", "method": "WebFetch", "status": "403 Forbidden", "outcome": "dropped — inconclusive, no ATS API fallback" },
+    { "url": "https://careers.leidos.com/jobs/16642625-devops-engineer", "method": "WebFetch", "status": "403 Forbidden", "outcome": "dropped — inconclusive, no ATS API fallback" },
+    { "url": "https://tesla.com/careers/search/job/staff-site-reliability-engineer-energy-software-259435", "method": "WebFetch", "status": "403 Forbidden", "outcome": "dropped — inconclusive (2nd run in a row blocked)" },
+    { "url": "https://careers.se.com/jobs/103256?lang=en-us", "method": "WebFetch", "status": "403 Forbidden", "outcome": "dropped — inconclusive" },
+    { "url": "https://canonical.com/careers/3029798", "method": "WebFetch", "status": "200 live", "outcome": "dropped — filter fail (no Terraform/Ansible named)" },
+    { "url": "https://www.amazon.jobs/en/jobs/10523734/systems-development-engineer-amazon-foundational-security-services", "method": "WebFetch", "status": "200 live", "outcome": "dropped — filter fail (no Terraform/Ansible named), Seattle WA" },
+    { "url": "https://www.amazon.jobs/en/jobs/10431893/security-engineer-platform-security", "method": "WebFetch", "status": "200 live", "outcome": "dropped — filter fail (no Terraform/Ansible named), Seattle WA" },
+    { "url": "https://www.qualtrics.com/careers/us/en/job/6589177/Senior-Site-Reliability-Engineer-Foundation-Seattle", "method": "WebFetch", "status": "410 Gone", "outcome": "dropped — dead" },
+    { "url": "https://jobs.boeing.com/job/seattle/senior-systems-devops-developer/185/86776630816", "method": "WebFetch", "status": "404 Not Found", "outcome": "dropped — dead" },
+    { "url": "https://jobs.boeing.com/job/seattle/devops-developer-mid-level-senior-or-lead/185/85493797968", "method": "WebFetch", "status": "404 Not Found", "outcome": "dropped — dead" },
+    { "url": "https://www.hashicorp.com/en/career/6651015", "method": "WebFetch", "status": "404 Not Found", "outcome": "dropped — dead (was 429-blocked on 2026-09-09, now confirmed dead)" },
+    { "url": "https://www.hashicorp.com/en/career/7055831", "method": "WebFetch", "status": "404 Not Found", "outcome": "dropped — dead (was 429-blocked on 2026-09-09, now confirmed dead)" },
+    { "url": "https://crowdstrike.wd5.myworkdayjobs.com/crowdstrikecareers/job/USA---Remote/Sr-Engineer--SRE-TechOps-CICD--Remote-_R29733", "method": "WebFetch", "status": "empty SPA render", "outcome": "dropped — inconclusive, live per API but body unreachable" },
+    { "url": "https://crowdstrike.wd5.myworkdayjobs.com/crowdstrikecareers/job/USA---Remote/GovCloud-Data-Infrastructure-Engineer--Remote-_R29607", "method": "WebFetch", "status": "empty SPA render", "outcome": "dropped — inconclusive, live per API but body unreachable" },
+    { "url": "https://recruiting2.ultipro.com/SOU1052SPPI/JobBoard/.../OpportunityDetail?opportunityId=c967c6ac-2d12-4e91-950e-f31d9ea6785d", "method": "WebFetch", "status": "browser-compat error page", "outcome": "dropped — dead/inaccessible via automation" },
+    { "url": "https://osv-cci.wd1.myworkdayjobs.com/en-US/CCICareers/job/Senior-Site-Reliability-Engineer_R1257", "method": "WebFetch", "status": "empty SPA render", "outcome": "dropped — inconclusive" }
+  ],
+  "api_hits": [
+    { "endpoint": "api.greenhouse.io/v1/boards/gitlab/jobs/8623389002", "ats": "Greenhouse", "status": "200", "outcome": "PASS — final shortlist" },
+    { "endpoint": "api.greenhouse.io/v1/boards/gitlab/jobs/8769103002", "ats": "Greenhouse", "status": "200", "outcome": "PASS — final shortlist" },
+    { "endpoint": "api.greenhouse.io/v1/boards/reddit/jobs/8131228", "ats": "Greenhouse", "status": "200", "outcome": "live but filter fail (no Terraform/Ansible named)" },
+    { "endpoint": "api.lever.co/v0/postings/octoenergy?mode=json", "ats": "Lever", "status": "200", "outcome": "PASS — final shortlist" },
+    { "endpoint": "crowdstrike.wd5.myworkdayjobs.com/wday/cxs/.../jobs (search R29733)", "ats": "Workday", "status": "200", "outcome": "confirms live + title, body still unreachable — inconclusive" },
+    { "endpoint": "crowdstrike.wd5.myworkdayjobs.com/wday/cxs/.../jobs (search GovCloud Data Infrastructure)", "ats": "Workday", "status": "200", "outcome": "confirms live + title, body still unreachable — inconclusive" }
+  ]
+}
