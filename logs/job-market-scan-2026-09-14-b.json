@@ -1,0 +1,85 @@
+{
+  "run_id": "job-market-scan-2026-09-14-b",
+  "workflow": "job-market-scan",
+  "date": "2026-09-14",
+  "trigger": "rerun same day — first scheduled attempt this date was fully network-blocked (see job-market-scan-2026-09-14 dashboard entry, no log file was ever written for it)",
+  "report": "output/job-market-scan-2026-09-14.md",
+  "results": {
+    "raw_hits_collected": 45,
+    "passed_all_filters_and_validation": 7,
+    "final_shortlist": 7,
+    "dropped_after_filter_or_validation": 38,
+    "dropped_inconclusive_network_egress_blocked": 10
+  },
+  "token_usage": {
+    "note": "Subagent totals are exact (reported by the harness on completion). Main-thread usage is NOT exact - Claude has no tool that reports its own token count - the figure below is a rough proxy from tool-call volume, not a real measurement.",
+    "subagents": [
+      { "label": "energy-sector collection", "tokens": 126417, "tool_uses": 65, "duration_ms": 424260 },
+      { "label": "cloud-native tech + Seattle-majors collection", "tokens": 157322, "tool_uses": 67, "duration_ms": 518297 },
+      { "label": "LinkedIn collection", "tokens": 94701, "tool_uses": 23, "duration_ms": 147752 }
+    ],
+    "subagent_total_tokens": 378440,
+    "subagent_total_tool_uses": 155,
+    "main_thread_tool_calls_estimate": { "web_fetch": 9, "bash_curl_api_calls": 22, "web_search": 0 }
+  },
+  "timing": { "step2_collection_minutes_approx": 9, "step3_3.5_filter_and_validation_minutes_approx": 20, "step5_report_writing_minutes_approx": 5 },
+  "source_coverage": {
+    "energy_sector": {
+      "queried": ["Octopus Energy/Kraken Technologies","Tesla Energy","Sunrun","Sunnova","Enphase","ChargePoint","EVgo","Constellation","NextEra","Duke Energy","Exelon","Schneider Electric","Siemens Energy","Uplight","AutoGrid","GridX","David Energy","Crusoe Energy","Hut 8","Palantir"],
+      "yielded_raw_hits": ["Octopus Energy/Kraken Technologies","Uplight","EVgo","Tesla Energy","Sunrun","Schneider Electric","Crusoe Energy","Palantir"],
+      "yielded_nothing": ["Enphase","ChargePoint","GridX","David Energy","Constellation Energy","NextEra Energy","Exelon","AutoGrid","Siemens Energy","Hut 8","Sunnova","Duke Energy"]
+    },
+    "cloud_native_tech": {
+      "queried": ["HashiCorp","Datadog","Elastic","Grafana Labs","Chronosphere","Honeycomb","Cloudflare","Fastly","GitLab","GitHub","Red Hat","Canonical","SUSE","CrowdStrike","Wiz","Snyk","Sysdig","Tenable","Palo Alto Networks","Stripe","Shopify","Reddit","DuckDuckGo","Amazon","Microsoft","F5 Networks","T-Mobile","Nordstrom Tech"],
+      "yielded_raw_hits": ["CrowdStrike","GitLab","Cloudflare","Canonical","Stripe","Honeycomb","T-Mobile","Nordstrom Tech","Palo Alto Networks","Shopify","Datadog","Sysdig","Red Hat","Reddit"],
+      "yielded_nothing": ["HashiCorp (board no longer public)","Elastic (US remote none)","Grafana Labs (US remote none)","Chronosphere (merged into Palo Alto Networks careers)","Fastly (US remote none)","GitHub (no public ATS found)","SUSE (no public ATS found)","Wiz (no matching roles)","Snyk (Ashby placeholder board only)","Tenable (no US match)","Amazon (no direct ATS URL located)","Microsoft (no direct ATS URL located)","F5 Networks (Workday tenant guesses 422)","DuckDuckGo (no matching roles)"]
+    },
+    "aggregators_and_linkedin": {
+      "queried": ["LinkedIn Jobs"],
+      "yielded_raw_hits": ["LinkedIn Jobs"]
+    }
+  },
+  "sites_visited": [
+    { "url": "https://job-boards.greenhouse.io/gitlab/jobs/8623389002", "method": "WebFetch", "status": "200 live", "outcome": "pass — final shortlist" },
+    { "url": "https://jobs.ashbyhq.com/chainlink-labs/cb9fe4a5-7368-4ab1-b89b-81bb9ee6f0b0", "method": "WebFetch", "status": "200 but empty content", "outcome": "inconclusive — JS-rendered SPA, no extractable job content" },
+    { "url": "https://careers.homedepot.com/job/23715993/cybersecurity-engineer-ii-siem-and-edr-remote-remote/", "method": "WebFetch", "status": "EGRESS_BLOCKED", "outcome": "inconclusive — network egress policy denial, not dead-link" },
+    { "url": "https://careers.t-mobile.com/software-reliability-engineer/job/35563F279F95E008776367B52BFEC1E9", "method": "WebFetch", "status": "EGRESS_BLOCKED", "outcome": "inconclusive — network egress policy denial" },
+    { "url": "https://careers.nordstrom.com/senior-network-engineer-hybrid-seattle-wa/job/C4569230C496EC111A6C3F47A003B776", "method": "WebFetch", "status": "EGRESS_BLOCKED", "outcome": "inconclusive — network egress policy denial" },
+    { "url": "https://jobs.paloaltonetworks.com/en/job/santa-clara/senior-site-reliability-engineer-cortex/47263/83597413328", "method": "WebFetch", "status": "EGRESS_BLOCKED", "outcome": "inconclusive — network egress policy denial" },
+    { "url": "https://jobs.paloaltonetworks.com/en/job/santa-clara/senior-staff-site-reliability-engineer/47263/96174882736", "method": "WebFetch", "status": "EGRESS_BLOCKED", "outcome": "inconclusive — network egress policy denial" },
+    { "url": "https://jobs.paloaltonetworks.com/en/job/san-francisco/sr-staff-engineer-software-infrastructure-reliability-chronosphere/47263/99507997472", "method": "WebFetch", "status": "EGRESS_BLOCKED", "outcome": "inconclusive — network egress policy denial" },
+    { "url": "https://www.splunk.com/en_us/careers/jobs/site-reliability-engineer-splunk-32088.html", "method": "WebFetch", "status": "EGRESS_BLOCKED", "outcome": "inconclusive — network egress policy denial" },
+    { "url": "https://www.shopify.com/careers/senior-site-reliability-engineer-remote-americas-hawaii_3dda5290-b1ff-4c26-a91f-fcb25902043b", "method": "WebFetch", "status": "EGRESS_BLOCKED", "outcome": "inconclusive — network egress policy denial" },
+    { "url": "https://www.tesla.com/careers/search/job/sr-site-reliability-engineer-energy-software-246637", "method": "WebFetch + curl", "status": "EGRESS_BLOCKED (connect_rejected)", "outcome": "inconclusive — network egress policy denial" },
+    { "url": "https://careers.sunrun.com/job/california/staff-devsecops-engineer/21632/81066491264", "method": "WebFetch + curl", "status": "EGRESS_BLOCKED (connect_rejected)", "outcome": "inconclusive — network egress policy denial" },
+    { "url": "https://www.se.com/ww/en/about-us/careers/job-details/senior-design-engineer-devops/009G3P/", "method": "curl", "status": "EGRESS_BLOCKED (connect_rejected)", "outcome": "inconclusive — network egress policy denial" },
+    { "url": "https://jobs.jobvite.com/uplight/job/oMoTzfwm", "method": "curl", "status": "EGRESS_BLOCKED (connect_rejected)", "outcome": "inconclusive — network egress policy denial" },
+    { "url": "https://jobs.jobvite.com/evgo/job/oKtewfwH", "method": "curl", "status": "EGRESS_BLOCKED (connect_rejected)", "outcome": "inconclusive — network egress policy denial" },
+    { "url": "https://jobs.jobvite.com/evgo/job/oki1ufwR", "method": "curl", "status": "EGRESS_BLOCKED (connect_rejected)", "outcome": "inconclusive — network egress policy denial" }
+  ],
+  "api_hits": [
+    { "endpoint": "api.lever.co/v0/postings/octoenergy?mode=json", "ats": "Lever", "status": "200", "outcome": "PASS — final shortlist (Platform Engineer II, Remote USA)" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/gitlab/jobs/8623389002", "ats": "Greenhouse", "status": "200", "outcome": "PASS — final shortlist" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/gitlab/jobs/8769103002", "ats": "Greenhouse", "status": "200", "outcome": "PASS — final shortlist" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/gitlab/jobs/8771527002", "ats": "Greenhouse", "status": "200", "outcome": "PASS — final shortlist" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/gitlab/jobs (full list)", "ats": "Greenhouse", "status": "200", "outcome": "used to discover Orbit + Infra Security roles; 11 other search-indexed GitLab IDs confirmed dead" },
+    { "endpoint": "crowdstrike.wd5.myworkdayjobs.com/wday/cxs/.../job/.../_R29733", "ats": "Workday", "status": "200", "outcome": "PASS — final shortlist (full JD body, contrary to prior-run 403 pattern)" },
+    { "endpoint": "crowdstrike.wd5.myworkdayjobs.com/wday/cxs/.../job/.../_R30109", "ats": "Workday", "status": "200", "outcome": "PASS — final shortlist" },
+    { "endpoint": "crowdstrike.wd5.myworkdayjobs.com/wday/cxs/.../job/.../_R29607 (GovCloud)", "ats": "Workday", "status": "200", "outcome": "live but filter fail — no Terraform/Ansible" },
+    { "endpoint": "redhat.wd5.myworkdayjobs.com/wday/cxs/redhat/Jobs/jobs (search terraform)", "ats": "Workday", "status": "200", "outcome": "discovered R-052630" },
+    { "endpoint": "redhat.wd5.myworkdayjobs.com/wday/cxs/redhat/Jobs/job/.../_R-052630", "ats": "Workday", "status": "200", "outcome": "PASS — final shortlist (OpenShift Infrastructure - Senior Consultant)" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/joinpaxos/jobs/8289381002 (+3 alt tokens)", "ats": "Greenhouse", "status": "404 (all tokens)", "outcome": "dropped — board not resolvable" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/webflow/jobs", "ats": "Greenhouse", "status": "200", "outcome": "dropped — SRE/observability job ID absent from live board" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/stripe/jobs/8174965", "ats": "Greenhouse", "status": "200", "outcome": "live but filter fail — no Terraform/Ansible" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/datadog/jobs/7777798", "ats": "Greenhouse", "status": "200", "outcome": "live but filter fail — no Terraform/Ansible" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/cloudflare/jobs (full list)", "ats": "Greenhouse", "status": "200", "outcome": "2 candidates found, both dropped (no IaC tool named, or Austin-only)" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/canonical/jobs (full list)", "ats": "Greenhouse", "status": "200", "outcome": "no Terraform/Ansible in any current SRE posting" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/reddit/jobs (full list)", "ats": "Greenhouse", "status": "200", "outcome": "no qualifying US-remote role with IaC tool named" },
+    { "endpoint": "api.lever.co/v0/postings/sysdig?mode=json", "ats": "Lever", "status": "200", "outcome": "no Terraform/Ansible; role is Sales/BizOps-track" },
+    { "endpoint": "api.lever.co/v0/postings/fastly?mode=json", "ats": "Lever", "status": "404", "outcome": "board token not found" },
+    { "endpoint": "api.ashbyhq.com/posting-api/job-board/chainlink-labs (+3 alt slugs)", "ats": "Ashby", "status": "404 (all slugs)", "outcome": "inconclusive — no resolvable public board" },
+    { "endpoint": "api.ashbyhq.com/posting-api/job-board/suse, github", "ats": "Ashby", "status": "404", "outcome": "no public board found" },
+    { "endpoint": "constellation/nexteraenergy/exeloncorp Workday tenants (multiple guesses)", "ats": "Workday", "status": "422 Unprocessable Entity", "outcome": "inconclusive — correct tenant slug not identified" },
+    { "endpoint": "redhat.wd5.myworkdayjobs.com (board token variants)", "ats": "Greenhouse (wrong guess)", "status": "404", "outcome": "confirmed Red Hat is not on Greenhouse; Workday used instead" }
+  ]
+}
