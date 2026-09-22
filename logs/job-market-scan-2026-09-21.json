@@ -1,0 +1,66 @@
+{
+  "run_id": "job-market-scan-2026-09-21",
+  "workflow": "job-market-scan",
+  "date": "2026-09-21",
+  "trigger": "scheduled weekly run",
+  "report": "output/job-market-scan-2026-09-21.md",
+  "results": {
+    "raw_hits_collected": 39,
+    "passed_all_filters_and_validation": 11,
+    "final_shortlist": 11,
+    "dropped_after_filter_or_validation": 28,
+    "dropped_inconclusive_egress_or_unresolvable_ats": 9
+  },
+  "token_usage": {
+    "note": "Subagent totals are exact (reported by the harness on completion). Main-thread usage is NOT exact - Claude has no tool that reports its own token count - the figure below is a rough proxy from tool-call volume, not a real measurement.",
+    "subagents": [
+      { "label": "energy-sector collection", "tokens": 113491, "tool_uses": 54, "duration_ms": 234037 },
+      { "label": "cloud-native tech + Seattle-majors collection", "tokens": 111101, "tool_uses": 44, "duration_ms": 285140 },
+      { "label": "LinkedIn collection", "tokens": 84340, "tool_uses": 29, "duration_ms": 140049 }
+    ],
+    "subagent_total_tokens": 308932,
+    "subagent_total_tool_uses": 127,
+    "main_thread_tool_calls_estimate": { "web_fetch": 7, "bash_curl_api_calls": 21, "web_search": 0 }
+  },
+  "timing": { "step2_collection_minutes_approx": 5, "step3_3.5_filter_and_validation_minutes_approx": 20, "step5_report_writing_minutes_approx": 8 },
+  "source_coverage": {
+    "energy_sector": {
+      "queried": ["Octopus Energy/Kraken Technologies","Tesla Energy","Sunrun","Sunnova","Enphase","ChargePoint","EVgo","Constellation","NextEra","Duke Energy","Exelon","Schneider Electric","Siemens Energy","Uplight","AutoGrid","GridX","David Energy","Crusoe Energy","Hut 8","Palantir","Southwest Power Pool","Leidos"],
+      "yielded_raw_hits": ["Octopus Energy/Kraken Technologies","Palantir","EVgo","Enphase","Sunnova"],
+      "yielded_nothing": ["Tesla Energy (403 again)","Schneider Electric (egress blocked)","Leidos (egress blocked, domain-level)","ChargePoint (India-only matches)","Duke Energy (Workday reachable, no match)","Sunrun (Workday reachable, no match)","Uplight (Jobvite reachable, no match)","Crusoe Energy (onsite-only)","Hut 8 (no IaC/SIEM/Seattle match)","GridX/AutoGrid/Arcadia (board token 404s)","Southwest Power Pool (UltiPro unreachable)","Constellation/NextEra/Exelon (ATS unresolved; Exelon identified as iCIMS)","Siemens Energy (no public ATS)","David Energy (dropped at collection-time sanity check)"]
+    },
+    "cloud_native_tech": {
+      "queried": ["HashiCorp","Datadog","Elastic","Grafana Labs","Chronosphere","Honeycomb","Cloudflare","Fastly","GitLab","GitHub","Red Hat","Canonical","SUSE","CrowdStrike","Wiz","Snyk","Sysdig","Tenable","Palo Alto Networks","Stripe","Shopify","Reddit","DuckDuckGo","Amazon","Microsoft","F5 Networks","T-Mobile","Nordstrom Tech"],
+      "yielded_raw_hits": ["GitLab","CrowdStrike","Elastic","F5 Networks","Home Depot (ad-hoc)","T-Mobile (snippet-only)","Cloudflare"],
+      "yielded_nothing": ["HashiCorp (board not public)","Datadog (no Terraform/Ansible)","Grafana Labs (no US-remote match)","Chronosphere (merged into PAN careers)","Honeycomb (dev-flavored, no IaC match)","Fastly (no US-remote match)","GitHub (no public ATS)","SUSE (no public ATS)","Wiz (Ashby resolves, 0 jobs)","Snyk (no public ATS)","Sysdig (Sales/BizOps track only)","Tenable (no US match)","Palo Alto Networks (reachable this run, no qualifying US-remote/Seattle role)","Stripe (no Terraform/Ansible)","Shopify (not re-tested, prior block)","Reddit (no Terraform/Ansible)","DuckDuckGo (no public ATS)","Amazon (no direct ATS URL, 3rd run)","Microsoft (no direct ATS URL, 3rd run)","Nordstrom Tech (no tech/infra roles found)"]
+    },
+    "aggregators_and_linkedin": {
+      "queried": ["LinkedIn Jobs"],
+      "yielded_raw_hits": ["LinkedIn Jobs"]
+    }
+  },
+  "sites_visited": [
+    { "url": "https://careers.homedepot.com/job/23715993/cybersecurity-engineer-ii-siem-and-edr-remote-remote/", "method": "curl -sSL + WebFetch", "status": "200 live", "outcome": "filter-fail — no Terraform/Ansible found in full JD" },
+    { "url": "https://www.splunk.com/en_us/careers/jobs/senior-site-reliability-engineer-32633.html", "method": "WebFetch", "status": "301 redirect to careers.cisco.com", "outcome": "inconclusive — redirect target egress-blocked" },
+    { "url": "https://www.splunk.com/en_us/careers/jobs/senior-site-reliability-engineer-32925.html", "method": "WebFetch", "status": "301 redirect to careers.cisco.com", "outcome": "inconclusive — redirect target egress-blocked" },
+    { "url": "https://careers.cisco.com/global/en/splunk", "method": "WebFetch", "status": "EGRESS_BLOCKED", "outcome": "inconclusive — network egress policy denial" },
+    { "url": "https://careerhub.qlik.com/careers/job/1133911878538", "method": "WebFetch", "status": "EGRESS_BLOCKED", "outcome": "inconclusive — network egress policy denial" },
+    { "url": "https://jobs.experian.com/job/senior-site-reliability-engineer-remote-in-united-states-jid-1884", "method": "WebFetch", "status": "EGRESS_BLOCKED", "outcome": "inconclusive — network egress policy denial" },
+    { "url": "https://careers.t-mobile.com/software-reliability-engineer/job/35563F279F95E008776367B52BFEC1E9", "method": "WebFetch", "status": "403 Forbidden", "outcome": "inconclusive — no ATS API fallback available, dropped" },
+    { "url": "https://jobs.jobvite.com/enphase-energy/job/oPyUzfwA", "method": "curl", "status": "303 redirect to empty page", "outcome": "dead — dropped" },
+    { "url": "https://www.workiva.com/careers", "method": "WebFetch", "status": "EGRESS_BLOCKED", "outcome": "inconclusive — could not resolve correct Workday site slug" }
+  ],
+  "api_hits": [
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/gitlab/jobs?content=true (full board)", "ats": "Greenhouse", "status": "200", "outcome": "6 roles PASS — final shortlist (8769103002, 8623389002, 8771527002, 8734888002, 8795736002, 8512432002); 1 dropped for UK-only geography (8773546002); 1 deprioritized for weak profile fit (8517171002)" },
+    { "endpoint": "api.lever.co/v0/postings/octoenergy?mode=json", "ats": "Lever", "status": "200", "outcome": "PASS — final shortlist (Platform Engineer II, Remote USA); Houston TX sibling req dropped for geography" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/elastic/jobs?content=true", "ats": "Greenhouse", "status": "200", "outcome": "2 roles PASS — final shortlist (8047349, 8071641)" },
+    { "endpoint": "crowdstrike.wd5.myworkdayjobs.com/wday/cxs/crowdstrike/crowdstrikecareers/jobs (search R29733)", "ats": "Workday", "status": "200", "outcome": "PASS — final shortlist" },
+    { "endpoint": "crowdstrike.wd5.myworkdayjobs.com/wday/cxs/crowdstrike/crowdstrikecareers/jobs (search R29937)", "ats": "Workday", "status": "200", "outcome": "PASS — final shortlist" },
+    { "endpoint": "crowdstrike.wd5.myworkdayjobs.com/wday/cxs/crowdstrike/crowdstrikecareers/job/.../_R29733", "ats": "Workday", "status": "200", "outcome": "PASS — full JD body confirmed, re-confirmed at Step 6 spot-check" },
+    { "endpoint": "crowdstrike.wd5.myworkdayjobs.com/wday/cxs/crowdstrike/crowdstrikecareers/job/.../_R29937", "ats": "Workday", "status": "200", "outcome": "PASS — full JD body confirmed, re-confirmed at Step 6 spot-check" },
+    { "endpoint": "crowdstrike.wd5.myworkdayjobs.com (search R30075)", "ats": "Workday", "status": "200", "outcome": "live but filter fail — no SIEM/observability keyword" },
+    { "endpoint": "api.lever.co/v0/postings/palantir?mode=json", "ats": "Lever", "status": "200", "outcome": "2 Seattle roles live but filter fail — no Terraform/Ansible; 1 DC role dropped for geography" },
+    { "endpoint": "workiva.wd1.myworkdayjobs.com/wday/cxs/workiva/{External,Careers,workiva,Workiva}/jobs", "ats": "Workday", "status": "422 (all 4 site-slug guesses)", "outcome": "inconclusive — correct site slug not identified, dropped" },
+    { "endpoint": "F5 Workday tenant ffive.wd5.myworkdayjobs.com/f5jobs (via subagent)", "ats": "Workday", "status": "200", "outcome": "3 Seattle roles found (RP1038142, RP1038430, RP1038431), all filter-fail (missing Terraform/Ansible or SIEM/observability)" }
+  ]
+}
