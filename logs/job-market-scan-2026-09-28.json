@@ -1,0 +1,104 @@
+{
+  "run_id": "job-market-scan-2026-09-28",
+  "workflow": "job-market-scan",
+  "date": "2026-09-28",
+  "trigger": "scheduled weekly run",
+  "report": "output/job-market-scan-2026-09-28.md",
+  "results": {
+    "raw_hits_collected": 50,
+    "passed_all_filters_and_validation": 10,
+    "final_shortlist": 10,
+    "dropped_after_filter_or_validation": 32,
+    "dropped_inconclusive_egress_or_unresolvable_ats": 8
+  },
+  "token_usage": {
+    "note": "Subagent totals are exact (reported by the harness on completion). Main-thread usage is NOT exact - Claude has no tool that reports its own token count - the figure below is a rough proxy from tool-call volume, not a real measurement.",
+    "subagents": [
+      { "label": "cloud-native + Seattle-majors collection", "tokens": 132653, "tool_uses": 68, "duration_ms": 528797 },
+      { "label": "energy-sector collection", "tokens": 117634, "tool_uses": 47, "duration_ms": 378450 },
+      { "label": "LinkedIn collection", "tokens": 76232, "tool_uses": 18, "duration_ms": 88986 },
+      { "label": "validation: GitLab/Elastic/CrowdStrike/F5/Wiz", "tokens": 76676, "tool_uses": 23, "duration_ms": 218203 },
+      { "label": "validation: Bungie/SmarterDx/Workiva/other new hits", "tokens": 74506, "tool_uses": 25, "duration_ms": 226744 }
+    ],
+    "subagent_total_tokens": 477701,
+    "subagent_total_tool_uses": 181,
+    "main_thread_tool_calls_estimate": { "web_fetch": 0, "bash_curl_api_calls": 5, "web_search": 0 }
+  },
+  "timing": { "step2_collection_minutes_approx": 9, "step3_3.5_filter_and_validation_minutes_approx": 8, "step5_report_writing_minutes_approx": 6 },
+  "source_coverage": {
+    "cloud_native_tech_and_seattle": {
+      "queried": ["HashiCorp","Datadog","Elastic","Grafana Labs","Chronosphere","Honeycomb","Cloudflare","Fastly","GitLab","GitHub","Red Hat","Canonical","SUSE","CrowdStrike","Wiz","Snyk","Sysdig","Tenable","Palo Alto Networks","Stripe","Shopify","Reddit","DuckDuckGo","Amazon","Microsoft","F5 Networks","T-Mobile","Nordstrom Tech"],
+      "yielded_raw_hits": ["GitLab (7)","Elastic (1)","CrowdStrike (4)","F5 Networks (4)","Wiz (1)","Cloudflare (1)","Reddit (2)","Sysdig (2)","Palo Alto Networks (1)"],
+      "yielded_nothing": ["HashiCorp (no public board)","Datadog (no Terraform/Ansible match)","Grafana Labs (SRE hits all EU/UK)","Honeycomb (thin board, no match)","Fastly (only UK-remote match)","SUSE (no US-remote SRE/DevOps match)","Tenable (FedRAMP req found but stack not confirmed)","DuckDuckGo (thin board, no match)","Stripe (no Terraform/Ansible match)","GitHub (no public ATS found; domain egress-blocked)","Snyk (no public ATS found; domain egress-blocked)","Shopify (no discoverable JSON API)","Canonical (egress-blocked, unverified web leads only)","T-Mobile (403, no public ATS)","Amazon (egress-blocked this session)","Microsoft (egress-blocked this session)","Nordstrom Tech (no tech/infra roles found)"]
+    },
+    "energy_sector": {
+      "queried": ["Octopus Energy/Kraken","Palantir","Hut8","Crusoe Energy","ChargePoint","Sunnova","David Energy","Uplight","Enphase","Duke Energy","Sunrun","Siemens Energy","GridX","AutoGrid","Arcadia","Tesla Energy","Exelon","Constellation","NextEra","Schneider Electric","EVgo","Southwest Power Pool","Leidos"],
+      "yielded_raw_hits": ["Octopus Energy/Kraken (2)","Palantir (6)","Hut8 (1)","Crusoe Energy (4)"],
+      "yielded_nothing": ["ChargePoint (no DevOps/SRE titles)","Sunnova (no engineering roles)","David Energy (no engineering roles)","Uplight (no DevOps/SRE titles currently open)","Enphase (no remote/Seattle DevOps/SRE titles open)","Duke Energy (Workday reachable, no match)","Sunrun (Workday reachable, no match)","Siemens Energy (Terraform/Ansible roles exist but only Romania/India)","GridX/AutoGrid/Arcadia (no resolvable ATS, 3rd run)","Tesla Energy (403, 3rd run)","Exelon/Constellation/NextEra (icims.com egress-blocked session-wide)","Schneider Electric (careers.se.com egress-blocked)","EVgo (no resolvable ATS)","Southwest Power Pool/Leidos (not re-attempted per prior guidance)"]
+    },
+    "aggregators_and_linkedin": {
+      "queried": ["LinkedIn Jobs (standard + SIEM + Seattle query variants)", "Targeted searches: Workiva, Epic Games, Qlik, Experian"],
+      "yielded_raw_hits": ["Workiva (3)","Epic Games (1)","Qlik (1)","Experian (2)","Bungie (1)","SmarterDx (1)","Zscaler (1)","Garner Health (1)","Attain (1)","Fivetran (1)","BlackCloak (1)"]
+    }
+  },
+  "sites_visited": [
+    { "url": "boards-api.greenhouse.io/v1/boards/gitlab/jobs/8517171002?content=true", "method": "curl (subagent)", "status": "200 live", "outcome": "filter-fail — no SIEM/observability language beyond a generic AI-governance bullet" },
+    { "url": "boards-api.greenhouse.io/v1/boards/gitlab/jobs/8710061002?content=true", "method": "curl (subagent)", "status": "200 live", "outcome": "filter-fail — no SIEM/observability language" },
+    { "url": "boards-api.greenhouse.io/v1/boards/gitlab/jobs/8746461002?content=true", "method": "curl (subagent)", "status": "200 live", "outcome": "filter-fail — DC-Metro-only + TS/SCI clearance restriction, no SIEM/observability language" },
+    { "url": "boards-api.greenhouse.io/v1/boards/gitlab/jobs/8795736002?content=true", "method": "curl (subagent)", "status": "200 live", "outcome": "pass (borderline filter 2 — AppSec tooling, not SIEM) — shortlisted" },
+    { "url": "boards-api.greenhouse.io/v1/boards/gitlab/jobs/8771527002?content=true", "method": "curl (subagent)", "status": "200 live", "outcome": "pass — shortlisted" },
+    { "url": "boards-api.greenhouse.io/v1/boards/gitlab/jobs/8623389002?content=true", "method": "curl (subagent + main-thread spot-check)", "status": "200 live", "outcome": "pass — shortlisted, top pick" },
+    { "url": "boards-api.greenhouse.io/v1/boards/gitlab/jobs/8734888002?content=true", "method": "curl (subagent + main-thread spot-check)", "status": "200 live", "outcome": "pass — shortlisted, top pick" },
+    { "url": "boards-api.greenhouse.io/v1/boards/elastic/jobs/8047349?content=true", "method": "curl (subagent)", "status": "200 live", "outcome": "filter-fail — observability keyword match was company boilerplate, not role content" },
+    { "url": "crowdstrike.wd5.myworkdayjobs.com/.../Sr-Engineer--SRE-TechOps-CICD--Remote-_R29733", "method": "curl (subagent)", "status": "200 live", "outcome": "pass — shortlisted" },
+    { "url": "crowdstrike.wd5.myworkdayjobs.com/.../Sr-Linux-Systems-Engineer---Object-Storage--Remote-_R29937", "method": "curl (subagent + main-thread spot-check)", "status": "200 live", "outcome": "pass — shortlisted, top pick" },
+    { "url": "crowdstrike.wd5.myworkdayjobs.com/.../Infrastructure-Engineer--TechOps-CICD-Image-Management--Remote-_R30174", "method": "curl (subagent)", "status": "200 live", "outcome": "filter-fail — no SIEM/observability language (image-build compliance only)" },
+    { "url": "crowdstrike.wd5.myworkdayjobs.com/.../Platform-Professional-Services-Sr-Consultant--NG-SIEM--Remote-_R30181-1", "method": "curl (subagent)", "status": "200 live", "outcome": "filter-fail (strict) — Terraform/Ansible not independently confirmed in JD body" },
+    { "url": "ffive.wd5.myworkdayjobs.com/f5jobs/job/Seattle/Security-Engineer_RP1038142", "method": "curl (subagent + main-thread spot-check)", "status": "200 live", "outcome": "pass — shortlisted, top pick, [SEATTLE]" },
+    { "url": "ffive.wd5.myworkdayjobs.com/f5jobs/job/Seattle/Principal-Security-Engineer---Incident-Response_RP1038430", "method": "not deep-validated", "status": "collection-time only", "outcome": "filter-fail per collection data — no Terraform/Ansible named" },
+    { "url": "ffive.wd5.myworkdayjobs.com/f5jobs/job/Seattle/Security-Engineer---Incident-response_RP1038431", "method": "not deep-validated", "status": "collection-time only", "outcome": "filter-fail per collection data — no Terraform/Ansible named" },
+    { "url": "ffive.wd5.myworkdayjobs.com/f5jobs/job/Seattle/Senior-Identity-Engineer--Workforce-Identity_RP1037538", "method": "not deep-validated", "status": "collection-time only", "outcome": "filter-fail per collection data — Python only, no IaC/SIEM" },
+    { "url": "boards-api.greenhouse.io/v1/boards/wizinc/jobs/4711762006?content=true", "method": "curl (subagent + main-thread spot-check)", "status": "200 live", "outcome": "pass — shortlisted, top pick" },
+    { "url": "boards.greenhouse.io/cloudflare/jobs/8089031", "method": "not deep-validated", "status": "collection-time only", "outcome": "filter-fail — Austin TX onsite/hybrid, fails geography" },
+    { "url": "jobs.paloaltonetworks.com/.../principal-devops-engineer-us-citizen/...", "method": "not deep-validated", "status": "collection-time only", "outcome": "filter-fail — Santa Clara hybrid, fails geography" },
+    { "url": "api.lever.co/v0/postings/octoenergy?mode=json (posting e2a5dba5...)", "method": "curl (subagent)", "status": "200 live", "outcome": "pass — shortlisted, [ENERGY]" },
+    { "url": "api.lever.co/v0/postings/octoenergy?mode=json (posting ceca7761... Houston TX)", "method": "curl (subagent)", "status": "200 live", "outcome": "filter-fail — Houston TX, not remote" },
+    { "url": "api.lever.co/v0/postings/palantir?mode=json (6 postings)", "method": "curl (subagent)", "status": "200 live", "outcome": "filter-fail (all 6) — hybrid DC/NY/Seattle-onsite/Palo Alto, no Terraform/Ansible named" },
+    { "url": "boards-api.greenhouse.io/v1/boards/hut8/jobs (full board)", "method": "curl (subagent)", "status": "200 live", "outcome": "filter-fail — Miami FL, no Terraform/Ansible/SIEM" },
+    { "url": "api.ashbyhq.com/posting-api/job-board/Crusoe (4 postings)", "method": "curl (subagent)", "status": "200 live", "outcome": "filter-fail (all 4) — SF/Dublin onsite, no remote/Seattle" },
+    { "url": "api.lever.co/v0/postings/sysdig?mode=json (Director of Security Engineering)", "method": "curl (subagent)", "status": "200 live", "outcome": "pass — shortlisted (Director-level, seniority caveat noted)" },
+    { "url": "api.lever.co/v0/postings/sysdig?mode=json (Director, Security Research)", "method": "curl (subagent)", "status": "200 live", "outcome": "filter-fail — no Terraform/Ansible named anywhere in JD" },
+    { "url": "boards-api.greenhouse.io/v1/boards/bungie/jobs/3460177", "method": "curl (subagent)", "status": "404", "outcome": "dead — dropped (LinkedIn-sourced job ID stale)" },
+    { "url": "job-boards.greenhouse.io/smarterdx/jobs/5078050007", "method": "curl (subagent)", "status": "404", "outcome": "dead — dropped (LinkedIn-sourced job ID stale)" },
+    { "url": "job-boards.greenhouse.io/zscaler/jobs/5072596007", "method": "curl (subagent)", "status": "404", "outcome": "dead — dropped; substitute req found (5029669007) but fails geography (San Jose hybrid)" },
+    { "url": "job-boards.greenhouse.io/garnerhealth/jobs/5742734004", "method": "curl (subagent)", "status": "404", "outcome": "dead — dropped; substitute req found (6180042004, Senior not Staff) not the validated URL, not shipped" },
+    { "url": "job-boards.greenhouse.io/attain/jobs/5765763004", "method": "curl (subagent)", "status": "404", "outcome": "dead — dropped; substitute req found (6114653004) fails geography (Chicago hybrid)" },
+    { "url": "workiva.wd1.myworkdayjobs.com/en-US/careers/job/Staff-Site-Reliability-Engineer_R8280", "method": "curl + WebFetch (subagent)", "status": "500 — Workday platform-wide maintenance outage", "outcome": "inconclusive — dropped, retry next run" },
+    { "url": "jobs.experian.com/job/senior-site-reliability-engineer-remote-in-united-states-jid-1884", "method": "WebFetch (subagent)", "status": "EGRESS_BLOCKED", "outcome": "inconclusive — SmartRecruiters API fallback also blocked at proxy layer, dropped" },
+    { "url": "epicgames.avature.net/careers", "method": "curl + WebFetch (subagent)", "status": "connect_rejected / DNS ENOTFOUND", "outcome": "inconclusive — egress blocked, dropped" },
+    { "url": "boards-api.greenhouse.io/v1/boards/fivetran/jobs (full board)", "method": "curl (subagent)", "status": "200 live", "outcome": "no matching US-remote Staff SRE req exists; closest match (7990752003) hybrid Oakland CA — dropped" }
+  ],
+  "api_hits": [
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/gitlab/jobs?content=true (full board, 198 reqs)", "ats": "Greenhouse", "status": "200", "outcome": "7 raw hits collected; 4 PASS shortlisted (8795736002 borderline, 8771527002, 8623389002, 8734888002), 3 FAIL (8517171002, 8710061002, 8746461002)" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/elastic/jobs?content=true (full board, 385 reqs)", "ats": "Greenhouse", "status": "200", "outcome": "1 raw hit (8047349), FAIL filter 2 (boilerplate false positive)" },
+    { "endpoint": "crowdstrike.wd5.myworkdayjobs.com/wday/cxs/crowdstrike/crowdstrikecareers/jobs (search, ~99 reqs)", "ats": "Workday", "status": "200", "outcome": "4 raw hits; 2 PASS (R29733, R29937), 2 FAIL (R30174, R30181)" },
+    { "endpoint": "ffive.wd5.myworkdayjobs.com/wday/cxs/ffive/f5jobs/jobs (search, 218 reqs)", "ats": "Workday", "status": "200", "outcome": "4 raw hits; 1 PASS (RP1038142, Seattle), 3 FAIL (RP1038430, RP1038431, RP1037538)" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/wizinc/jobs?content=true", "ats": "Greenhouse", "status": "200", "outcome": "1 raw hit (4711762006), PASS shortlisted" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/cloudflare/jobs (396 reqs)", "ats": "Greenhouse", "status": "200", "outcome": "1 raw hit (8089031), FAIL geography (Austin TX)" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/reddit/jobs (150 reqs)", "ats": "Greenhouse", "status": "200", "outcome": "2 raw hits (ML systems engineer roles), weak/no observability match, not shortlisted" },
+    { "endpoint": "api.lever.co/v0/postings/sysdig?mode=json (28 reqs)", "ats": "Lever", "status": "200", "outcome": "2 raw hits; 1 PASS (Director of Security Engineering), 1 FAIL (Director, Security Research)" },
+    { "endpoint": "api.lever.co/v0/postings/octoenergy?mode=json (174 postings)", "ats": "Lever", "status": "200", "outcome": "2 raw hits; 1 PASS shortlisted (Remote USA), 1 FAIL (Houston TX)" },
+    { "endpoint": "api.lever.co/v0/postings/palantir?mode=json (321 postings)", "ats": "Lever", "status": "200", "outcome": "6 raw hits, all FAIL (hybrid DC/NY/onsite, no Terraform/Ansible)" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/hut8/jobs (43 postings) — NEW confirmed slug this run", "ats": "Greenhouse", "status": "200", "outcome": "1 raw hit, FAIL (Miami FL, no IaC/SIEM)" },
+    { "endpoint": "api.ashbyhq.com/posting-api/job-board/Crusoe (350 postings) — NEW confirmed slug this run", "ats": "Ashby", "status": "200", "outcome": "4 raw hits, all FAIL (onsite-only board)" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/bungie/jobs/3460177, /smarterdx/jobs/5078050007, /zscaler/jobs/5072596007, /garnerhealth/jobs/5742734004, /attain/jobs/5765763004", "ats": "Greenhouse", "status": "404 (all 5)", "outcome": "dead — LinkedIn-sourced job IDs stale, dropped" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/fivetran/jobs (190 postings)", "ats": "Greenhouse", "status": "200", "outcome": "no matching US-remote Staff SRE req; closest match fails geography, dropped" },
+    { "endpoint": "workiva.wd1.myworkdayjobs.com/wday/cxs/workiva/careers/jobs", "ats": "Workday", "status": "500 (platform-wide maintenance outage)", "outcome": "inconclusive, dropped — site slug `careers` now confirmed correct, retry next run" },
+    { "endpoint": "api.smartrecruiters.com/v1/companies/Experian/postings", "ats": "SmartRecruiters", "status": "403 (proxy CONNECT rejected)", "outcome": "inconclusive, dropped — egress-blocked" },
+    { "endpoint": "suse.wd3.myworkdayjobs.com/wday/cxs/suse/Jobsatsuse/jobs (26 reqs) — NEW confirmed tenant this run", "ats": "Workday", "status": "200", "outcome": "no US-remote SRE/DevOps/Terraform/Ansible match, zero shortlisted" },
+    { "endpoint": "api.ashbyhq.com/posting-api/job-board/duck-duck-go (10 reqs) — NEW confirmed slug this run", "ats": "Ashby", "status": "200", "outcome": "board very thin, zero eng roles matching, zero shortlisted" },
+    { "endpoint": "dukeenergy.wd1.myworkdayjobs.com/wday/cxs/dukeenergy/Search/jobs — NEW confirmed tenant this run", "ats": "Workday", "status": "200", "outcome": "zero relevant matches" },
+    { "endpoint": "sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/jobs — corrected tenant this run", "ats": "Workday", "status": "200", "outcome": "zero relevant matches" }
+  ],
+  "dashboard_update": "Attempted per workflow Step 8: Artifact tool is available in this session — combined data from all logs/ files (2026-09-09, 2026-09-10-b, 2026-09-14-b, 2026-09-21, 2026-09-28) was read and republished to the dashboard Artifact URL in resources/monitor.md."
+}

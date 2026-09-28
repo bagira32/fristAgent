@@ -2,7 +2,7 @@
 
 Reusable seed list for the **Cloud / DevOps / SRE — US-Remote or Seattle-area**
 market scan.
-Last reviewed: 2026-09-21.
+Last reviewed: 2026-09-28.
 
 ## Candidate profile (anchors the filter)
 
@@ -56,10 +56,14 @@ Nice-to-have (boost a match but not required):
 ### Seattle-area major employers (onsite/hybrid OK per commute-range filter, added 2026-09-10)
 
 - Amazon (AWS), Microsoft, F5 Networks, T-Mobile, Nordstrom Tech — high role volume but
-  JDs at this scale often don't name specific IaC tools (internal tooling common);
-  no qualifying role yet after 4 runs — see maintenance notes below. F5's Workday
-  tenant is now known (`ffive.wd5.myworkdayjobs.com`, site `f5jobs`) — 3 Seattle
-  security roles found 2026-09-21 but none cleared both must-have filters.
+  JDs at this scale often don't name specific IaC tools (internal tooling common).
+  F5's Workday tenant is `ffive.wd5.myworkdayjobs.com`, site `f5jobs` — first
+  qualifying F5 role found 2026-09-28 ("Security Engineer", RP1038142: Terraform +
+  Ansible + Python + security tooling, Seattle hybrid) after 2 prior runs of
+  near-misses. Amazon and Microsoft's own career domains (`amazon.jobs`,
+  `jobs.careers.microsoft.com`) were egress-blocked in the 2026-09-28 session
+  specifically (a new finding vs. prior runs, which just found "no ATS") — retry
+  next run. T-Mobile still 403s with no public ATS API found (3 runs running).
 
 ### Aggregators / boards
 
@@ -82,6 +86,81 @@ For WebSearch / Google:
 - Re-review this file quarterly — employers shut down hiring or change ATS hosts.
 - If a company appears 3+ runs in a row with no qualifying role, drop it.
 - Add new finds under the right section; keep alphabetical inside each group.
+
+### From 2026-09-28 run
+
+- **New confirmed ATS slugs/tenants this run** (previously unlisted or wrong):
+  Wiz's Greenhouse board token is `wizinc`, not `wiz` (`wiz` 404s); also Wiz's
+  own `absolute_url` field on wiz.io is malformed (literal `:title`
+  placeholder) — always use the `boards.greenhouse.io/wizinc/jobs/<id>` form.
+  Tenable's Greenhouse token is `tenableinc`. SUSE is on Workday, tenant
+  `suse.wd3.myworkdayjobs.com`, site `Jobsatsuse` (26 reqs, thin on
+  SRE/DevOps). DuckDuckGo is on Ashby, org slug `duck-duck-go` (hyphenated,
+  only 10 reqs total). Hut8's ATS is Greenhouse, token `hut8` (43 reqs) — a
+  prior Lever guess was wrong. Crusoe Energy is on Ashby, org slug `Crusoe`
+  (350 reqs) — but the entire board is confirmed onsite-only (SF/Denver/
+  Dublin), no remote/Seattle reqs exist structurally, future runs can
+  deprioritize re-checking Crusoe for remote roles. Sysdig is on Lever, slug
+  `sysdig` (28 reqs). Duke Energy's Workday tenant is
+  `dukeenergy.wd1.myworkdayjobs.com`, site `Search`. Sunrun's correct Workday
+  tenant is `sunrun.wd5.myworkdayjobs.com`, site `Sunrun_Careers` (a prior
+  `wd1` guess was wrong host). Siemens Energy runs its own "Careers
+  Marketplace" portal at `jobs.siemens-energy.com` (not Workday) — has
+  Terraform/Ansible/Kubernetes DevOps roles but only in Romania/India so far,
+  no US req found yet. Datadog (`datadog`), Grafana Labs (`grafanalabs`,
+  skews EU/UK for SRE), Cloudflare (`cloudflare`), Fastly (`fastly`), Stripe
+  (`stripe`), Reddit (`reddit`), Honeycomb (`honeycomb`) Greenhouse tokens
+  all reconfirmed working with zero qualifying yield this run.
+- **Workiva's Workday site slug is `careers` (lowercase)** —
+  `workiva.wd1.myworkdayjobs.com/careers` — correcting prior runs' failed
+  guesses of `External`/`Careers`/`workiva`/`Workiva`. Could not be exercised
+  this run (Workday had a platform-wide maintenance outage across all
+  tenants at validation time) — worth a fresh full-board pull next run now
+  that the slug is confirmed. Leads seen: R8280 "Staff Site Reliability
+  Engineer", R9272-3 "Staff Software Engineer - Site Reliability", R10266
+  "Senior Software Engineer - Site Reliability" (USA-Remote).
+- **LinkedIn-sourced job IDs had an unusually high dead-link rate this run**:
+  5 distinct "new employer" leads found via LinkedIn/web search — Bungie
+  (`boards.greenhouse.io/bungie/jobs/3460177`), SmarterDx, Zscaler ("Staff
+  SRE - Federal"), Garner Health, and Attain — all 404'd against the
+  employer's own current Greenhouse board when validated, despite fresh-
+  looking search snippets. In 3 of the 5 cases (Zscaler, Garner Health,
+  Attain) a similarly-titled role existed at a *different* job ID on the
+  same board, but with worse geography (hybrid-only, non-Seattle) or a
+  different seniority tier — so they still wouldn't have qualified even as
+  substitutes. Treat LinkedIn-sourced job IDs as leads only, never as
+  apply-ready, and always re-derive the current ID from the employer's own
+  board rather than trusting the linked ID.
+- **Bungie, SmarterDx, Garner Health, Attain, Zscaler**: not added to the
+  formal source list yet (only 1 appearance each, and that appearance was a
+  dead link) — worth a second look next run by pulling each company's full
+  live Greenhouse board directly (tokens: `bungie`, `smarterdx`,
+  `garnerhealth`, `attain`, `zscaler`) rather than trusting search-indexed
+  job IDs again.
+- **Session-level egress blocks observed this run** (may vary session to
+  session — retry next run before assuming permanent): `icims.com` (blocked
+  entirely — explains repeated Exelon/Constellation/NextEra iCIMS-guess
+  failures), `careers.se.com` (Schneider Electric — now confirmed hard
+  blocked, not intermittent), `canonical.com`, `jobs.experian.com` (and its
+  suspected backend `api.smartrecruiters.com` also blocked at the proxy
+  layer), `qlik.com`, `epicgames.avature.net`, `github.careers`, `snyk.io`,
+  `www.t-mobile.com`, `www.amazon.jobs` (new block — wasn't blocked before,
+  was previously just "no ATS found"), `jobs.careers.microsoft.com` (also a
+  new block). Working fine this session: `jobs.paloaltonetworks.com`,
+  `shopify.com` (though Shopify still has no discoverable JSON API).
+- **GridX, AutoGrid, Arcadia**: 3rd consecutive run with zero resolvable ATS
+  via token-guessing or web search — per the "3 runs no qualifying source"
+  convention, recommend dropping automated-search budget on these three and
+  relying on manual/LinkedIn spot-checks only going forward.
+- **Palantir** (Lever, slug `palantir`): checked 6 current DevOps/SRE/
+  InfoSec reqs this run — all hybrid DC/NY/Seattle-onsite/Palo-Alto, none
+  remote, and none name Terraform/Ansible explicitly in the JD body. Same
+  pattern as the 2026-09-21 run. Consider deprioritizing unless a remote or
+  Seattle-based req appears.
+- **Shopify, GitHub, Snyk**: no public Greenhouse/Lever/Ashby board found via
+  token-guessing (all 404). Worth trying SmartRecruiters/Workable APIs next
+  run, or treat like Amazon/Microsoft/Nordstrom as "no queryable ATS."
+- Reviewed 2026-09-21 → 2026-09-28.
 
 ### From 2026-09-21 run
 
