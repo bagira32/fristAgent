@@ -2,7 +2,7 @@
 
 Reusable seed list for the **Cloud / DevOps / SRE — US-Remote or Seattle-area**
 market scan.
-Last reviewed: 2026-09-28.
+Last reviewed: 2026-10-05.
 
 ## Candidate profile (anchors the filter)
 
@@ -35,41 +35,126 @@ Nice-to-have (boost a match but not required):
 ### Energy-sector employers (check career pages directly)
 
 - Octopus Energy / Kraken Technologies — `octopus.energy/careers`, `kraken.tech/careers`
-- Tesla Energy — `tesla.com/careers`
-- Sunrun, Sunnova, Enphase — solar/storage
+- Tesla Energy — `tesla.com/careers` (403 at the site level 4 consecutive runs, not a proxy issue)
+- Sunrun, Sunnova (Greenhouse token `sunnova`, confirmed 2026-10-05, thin board), Enphase — solar/storage
 - ChargePoint, EVgo — EV charging
 - Constellation, NextEra, Duke Energy, Exelon — US utilities
 - Schneider Electric, Siemens Energy — grid/industrial
-- Uplight, AutoGrid (Schneider), GridX — grid-edge SaaS
-- Arcadia, David Energy — energy-data platforms
-- Crusoe Energy, Hut 8 — energy/compute crossover
+- Arcadia, David Energy — energy-data platforms. **Arcadia's Greenhouse board
+  (`arcadiacareers`) is confirmed stale/deactivated** (404s, job links redirect to
+  `?error=true`) as of 2026-10-05.
+- Crusoe Energy (Ashby org slug `Crusoe`), Hut 8 (Greenhouse token `hut8`) — energy/compute
+  crossover. **Correction 2026-10-05: Crusoe's board is NOT fully onsite-only** —
+  it now includes Remote-US and Bellevue, WA postings alongside the SF/Denver/Dublin
+  onsite roles; worth checking Bellevue/Remote-US postings specifically each run.
 - Palantir (energy / Foundry) — `palantir.com/careers`
+- Leidos (Workday tenant `leidos`, site `External`, confirmed 2026-10-05) — large
+  volume of DevOps/SRE/Linux-Administrator titles, but all tied to clearance-required
+  onsite locations (Bethesda, Chantilly, Norfolk, Fort Meade, Annapolis Junction,
+  plus AU/UK sites) so far — worth a dedicated remote-facet search next run.
+
+**Dropped 2026-10-05 per the "3+ consecutive runs with no qualifying source"
+convention**: Uplight, AutoGrid, GridX — 4th consecutive run with zero resolvable
+ATS via token-guessing or web search. Do not keep budgeting automated-search time
+on these three; rely on manual/LinkedIn spot-checks only if revisited.
 
 ### Cloud-native tech employers (senior Linux/SRE remote-friendly)
 
-- Observability / data: HashiCorp, Datadog, Elastic, Grafana Labs, Chronosphere, Honeycomb
+- Observability / data: Datadog, Elastic, Grafana Labs, Honeycomb. **HashiCorp has
+  no standalone careers board as of this run** — folded into IBM's careers/Workday
+  system following the Feb 2025 acquisition; would need IBM's own Workday tenant to
+  search specifically. **Chronosphere also has no standalone board** — folded into
+  Palo Alto Networks post-acquisition; no PANW reqs tagged Chronosphere found yet.
 - Infra / edge: Cloudflare, Fastly, GitLab, GitHub
-- Linux vendors: Red Hat, Canonical, SUSE
-- Security: CrowdStrike, Wiz, Snyk, Sysdig, Tenable, Palo Alto Networks (Cortex)
-- Product cos with strong SRE culture: Stripe, Shopify, Reddit, DuckDuckGo
+- Linux vendors: Red Hat, Canonical (Greenhouse token `canonical` — confirmed
+  reachable 2026-10-05, the 2026-09-28 "egress-blocked" note was session-specific,
+  not a persistent block), SUSE
+- Security: CrowdStrike, Wiz (apply via Greenhouse URLs — see note below), Sysdig,
+  Tenable, Palo Alto Networks (Cortex; Workday tenant/site confirmed 2026-10-05:
+  `paloaltonetworks.wd5.myworkdayjobs.com`/`panwexternalcareers`). **Snyk's public
+  Greenhouse board appears to be genuinely gone** (clean 404 on
+  `api.greenhouse.io`, `boards-api.greenhouse.io`, and `job-boards.greenhouse.io`
+  for token `snyk`, confirmed 2026-10-05 — not an egress block, a real change).
+  Re-derive its current ATS from scratch next run rather than retrying the old token.
+- Product cos with strong SRE culture: Stripe (apply via Greenhouse URLs — stripe.com's
+  own domain is proxy-blocked in this environment, see note below), Shopify (still
+  no discoverable public ATS token after repeated guesses), Reddit, DuckDuckGo
+
+**Wiz apply-link bug (found 2026-10-05):** Wiz's own `wiz.io` apply-page redirect
+target has a live template bug — the URL contains a literal unsubstituted `:title`
+placeholder (e.g. `wiz.io/careers/job/<id>/:title?gh_jid=<id>`) and is blocked by
+this session's egress proxy besides. Use the Greenhouse-hosted URL instead
+(`job-boards.greenhouse.io/wizinc/jobs/<id>`) as the apply link on reports — it
+resolves reliably and is the de facto canonical apply URL until Wiz fixes it.
+
+**Stripe apply note:** `stripe.com` is egress-blocked in this session's proxy, so its
+own apply pages can't be fetched directly. The Greenhouse-hosted redirect URL
+(`job-boards.greenhouse.io/stripe/jobs/<id>`) is confirmed live via the Greenhouse
+JSON API and is what should ship as the apply link.
 
 ### Seattle-area major employers (onsite/hybrid OK per commute-range filter, added 2026-09-10)
 
 - Amazon (AWS), Microsoft, F5 Networks, T-Mobile, Nordstrom Tech — high role volume but
   JDs at this scale often don't name specific IaC tools (internal tooling common).
-  F5's Workday tenant is `ffive.wd5.myworkdayjobs.com`, site `f5jobs` — first
-  qualifying F5 role found 2026-09-28 ("Security Engineer", RP1038142: Terraform +
-  Ansible + Python + security tooling, Seattle hybrid) after 2 prior runs of
-  near-misses. Amazon and Microsoft's own career domains (`amazon.jobs`,
-  `jobs.careers.microsoft.com`) were egress-blocked in the 2026-09-28 session
-  specifically (a new finding vs. prior runs, which just found "no ATS") — retry
-  next run. T-Mobile still 403s with no public ATS API found (3 runs running).
+  F5's Workday tenant is `ffive.wd5.myworkdayjobs.com`, site `f5jobs` — qualifying F5
+  role RP1038142 ("Security Engineer": Terraform + Ansible + Puppet + Chef +
+  CrowdStrike EDR administration, Seattle hybrid) re-confirmed still open and live
+  2026-10-05, now a recurring reliable Seattle pick. Amazon and Microsoft's own
+  career domains (`amazon.jobs`, `jobs.careers.microsoft.com`) are **still
+  egress-blocked as of 2026-10-05** — NOT newly reachable, contrary to hope after
+  the 2026-09-28 block; keep retrying each run. T-Mobile still 403s / stale
+  search-indexed IDs with no public ATS API found. **Nordstrom Tech flagged for a
+  deeper look next run**: 2026-10-05 search surfaced several plausible Seattle
+  SRE/DevOps-titled roles (Senior Manager SRE, Senior Engineer 2 SRE, SRE-NOC,
+  Engineering Manager DevOps) for the first time in 3+ runs, but all specific
+  search-indexed job URLs were 404/stale and no live search API/feed was found to
+  re-derive current IDs — worth a direct `careers.nordstrom.com` crawl next run
+  rather than relying on search snippets. Workiva (Workday tenant
+  `workiva.wd1.myworkdayjobs.com`, site slug `careers` confirmed correct) remains
+  unresolvable — its jobs-search POST endpoint has returned 422 on every payload
+  variation tried across 2 consecutive runs now; the previously-seen reqs
+  (R8280/R9272-3/R10266) could not be re-verified as a result.
+
+### Newly formalized employers (2nd+ qualifying appearance, 2026-10-05)
+
+- **SmarterDx** — Greenhouse token `smarterdx`. Strong SIEM/detection-engineering
+  fit (runs Panther SIEM, AWS GuardDuty/Wiz investigation) — qualifying role found
+  2026-10-05 after a stale-link false start on 2026-09-28.
+- **Garner Health** — Greenhouse token `garnerhealth`. SRE/platform-engineering
+  roles with Terraform + Datadog observability — 2 qualifying reqs found 2026-10-05
+  (one carried over from a 2026-09-28 lead that wasn't validated at the time, now
+  confirmed live and qualifying).
+
+### New ATS slugs discovered 2026-10-05 (no qualifying role yet, but now directly queryable)
+
+- **Paxos** — Ashby, org slug `paxos` (lowercase; `joinpaxos`/`paxosinc`/`paxostrust`
+  all still 404). 14 open reqs; closest match has strong SIEM/EDR language but no
+  Terraform/Ansible named.
+- **BlackCloak** — Lever, slug `BlackCloak` (capitalized — case-sensitive, unusual
+  for Lever). 15 open reqs; no DevOps/SRE/Cloud/Platform role currently open, worth
+  rechecking since the stack fits well when a role is open.
+
+### Promising unvalidated leads (need a 2nd look — both main domains egress-blocked 2026-10-05)
+
+- **Aalyria** (space-comms startup) — "Staff Site Reliability Engineer – Spacetime,"
+  Remote US, strong observability stack (Prometheus/Loki/Tempo/OTel, GCP, IaC/GitOps)
+  but Terraform/Ansible not explicitly confirmed in the snippet seen. `aalyria.com`
+  egress-blocked; no Greenhouse/Lever/Ashby board found under guessed slugs.
+- **DigitalOcean** — "Staff Platform Engineer," **Seattle, WA**-based per snippet,
+  Terraform/IaC modules named — a rare Seattle+Terraform combo worth chasing.
+  `digitalocean.com` egress-blocked; no board found under guessed slugs.
 
 ### Aggregators / boards
 
 - **LinkedIn Jobs** — query template:
   `("Senior" OR "Staff") ("SRE" OR "DevOps" OR "Cloud Engineer" OR "Platform Engineer" OR "Site Reliability") "remote" "United States"`
-  Filters: Remote · United States · Experience: Senior+ · Date: past week
+  Filters: Remote · United States · Experience: Senior+ · Date: past week.
+  **2026-10-05 finding**: WebSearch returned zero direct `linkedin.com/jobs` URLs
+  across 6 query variants this run (base + SIEM + Seattle + `inurl:` variants) — an
+  apparent search-indexing gap for LinkedIn job pages in that session, not a
+  query-wording problem. Worth trying a different query shape next run, or treating
+  aggregator-sourced company names (Built In, etc.) as the de facto lead source when
+  this recurs.
 
 ## Search query cheatsheet
 
@@ -86,6 +171,50 @@ For WebSearch / Google:
 - Re-review this file quarterly — employers shut down hiring or change ATS hosts.
 - If a company appears 3+ runs in a row with no qualifying role, drop it.
 - Add new finds under the right section; keep alphabetical inside each group.
+
+### From 2026-10-05 run
+
+- **HashiCorp and Chronosphere both lost their standalone careers boards** to
+  acquisitions — HashiCorp folded into IBM (Feb 2025 acquisition close), Chronosphere
+  folded into Palo Alto Networks. Both now 404 cleanly on a bare Greenhouse token
+  guess. Remove them as standalone sources; HashiCorp reqs would need IBM's own
+  Workday tenant, Chronosphere reqs would need PANW's (now confirmed:
+  `paloaltonetworks.wd5.myworkdayjobs.com`/`panwexternalcareers`) tenant searched
+  for Chronosphere-tagged postings specifically.
+- **Snyk's Greenhouse board is genuinely gone** (clean 404 on all 3 Greenhouse
+  hosts for token `snyk`) — not an egress-block retry item anymore, a real
+  disappearance. Needs a fresh from-scratch ATS lookup next run if revisited.
+- **Crusoe Energy's board is no longer onsite-only** — now has 8 Remote-US postings
+  and Bellevue, WA listings alongside the SF/Denver/Dublin onsite roles (yielded
+  this run's one `[ENERGY]` match, a Bellevue cloud-support role). Reverses the
+  2026-09-28 "entire board confirmed onsite-only" finding.
+- **Octopus Energy/Kraken's prior qualifying Remote-USA Lever posting is gone** —
+  board is down to 160 postings (from 174), zero US-remote DevOps/SRE/TechOps match
+  this run. Keep checking; Lever boards turn over fast.
+- **Zscaler req 5029669007** ("Staff SRE (Production Engineer) – Federal") now lists
+  **Bellevue, WA** among its eligible offices (previously only San Jose was seen) and
+  passes all 3 locked filters — but its JD explicitly requires **US citizenship**.
+  Not formalized as a routine Seattle source given the citizenship gate makes it
+  unshippable without knowing the candidate's eligibility; flagged per-run instead
+  if it recurs.
+- **Egress blocks newly observed this run**: `jobs.siemens-energy.com` (was
+  reachable on 2026-09-28 with Romania/India roles found, now blocked), `www.evgo.com`
+  / `careers.evgo.com` / `ev.careers`, `www.enphase.com`, `jobs.nexteraenergy.com`,
+  `www.spp.org`, `recruiting.ultipro.com`, `www.aalyria.com`, `www.digitalocean.com`.
+  Several of these (EVgo, Southwest Power Pool) had plausible aggregator-reported
+  Terraform-named leads that could not be validated live as a direct result —
+  dropped per the validation rule rather than shipped.
+- **New failure mode, not a block**: `epicgames.avature.net` returned DNS
+  `ENOTFOUND` this run, different from the prior egress-block finding — worth a
+  different lookup approach (regional subdomain, alternate path) next run rather
+  than assuming it's still a proxy block.
+- **Jensen Hughes**: confirmed via full live board pull (168 reqs) to have zero
+  SRE/DevOps/Platform/Cloud/Security-Engineer titles at all — it's a fire-protection
+  engineering firm, wrong industry vertical structurally, not just a stale-link
+  issue. Recommend not rechecking.
+- **Bungie**: confirmed via live board pull to have only 2 open reqs total, neither
+  technical — not a stale-ID issue, genuinely nothing here.
+- Reviewed 2026-09-28 → 2026-10-05.
 
 ### From 2026-09-28 run
 
