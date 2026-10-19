@@ -97,6 +97,16 @@ JSON API and is what should ship as the apply link.
 
 - **Okta** (Greenhouse, board token `okta`, no company-prefix needed — 385 reqs) — **NEW formalized source, 2026-10-19.** Large Bellevue, WA hybrid hub with at least 5 SRE/reliability reqs naming Terraform and/or Ansible plus Splunk/Datadog/Grafana/Prometheus observability explicitly — the strongest new-source find in several runs. **`okta.com` itself is egress-blocked (DNS ENOTFOUND)** — the Greenhouse redirect target 404s on direct domain fetch, same failure pattern as Stripe/Fastly; use the Greenhouse-hosted URL (`job-boards.greenhouse.io/okta/jobs/<id>`) as the apply link, verified via the Greenhouse JSON API (`boards-api.greenhouse.io/v1/boards/okta/jobs/<id>?content=true`). **Recurring reliable picks to recheck each run**: req `7658254` ("Staff Site Reliability Engineer - Splunk", Bellevue/Chicago/NYC/SF/DC) and req `8160050` ("Staff Site Reliability Engineer - Kubernetes", same locations, explicit Terraform+Ansible pairing). Also worth rechecking: `8268917` (Senior SRE - EPG), `7317857` (Senior Manager, SRE - Infrastructure Platform — manager-tier), `7617976` (Senior Database Reliability Engineer). Most Okta Seattle-area postings list Bellevue alongside Chicago/NYC/SF/DC as interchangeable hybrid options — confirm Bellevue is actually in the location list before shipping.
 
+- **Zscaler** (Greenhouse, board token `zscaler`, 365 reqs) — in addition to the
+  long-tracked Federal/citizenship-gated SRE req (see "From 2026-09-28 run"
+  notes below), req `5158936007` ("Production Engineer", hybrid 3 days/week —
+  Bellevue, WA or San Jose, CA) is a **confirmed qualifying pick, added
+  2026-10-19 as a post-publish correction** — explicit Terraform + Ansible +
+  Prometheus/Grafana/OpenTelemetry across multi-cloud (AWS/GCP/bare-metal), no
+  citizenship/clearance language in the JD. Apply via
+  `job-boards.greenhouse.io/zscaler/jobs/5158936007`. Re-check this specific
+  req ID each run alongside the Federal req.
+
 - Amazon (AWS), Microsoft, F5 Networks, T-Mobile, Nordstrom Tech — high role volume but
   JDs at this scale often don't name specific IaC tools (internal tooling common).
   F5's Workday tenant is `ffive.wd5.myworkdayjobs.com`, site `f5jobs` — the

@@ -3,13 +3,15 @@
 ## Summary
 
 - **90+ postings individually evaluated** (plus several thousand scanned in bulk via board-level keyword grep) across cloud-native tech, energy-sector, and LinkedIn/follow-up-lead sources.
-- **12 roles passed all 3 locked filters and live-URL validation** → shipped to the shortlist below. 1 more passed filters but was cut for weak role-fit (pre-sales, not hands-on IC); 0 were dropped this run for citizenship/clearance gating (the 3 Leidos leads checked all failed the observability filter independently, so the eligibility gate wasn't the deciding factor).
-- **1 `[ENERGY]` role** (Crusoe Energy, Bellevue WA — 3rd consecutive confirmed-live run). **6 `[SEATTLE]`-tagged** onsite/hybrid roles.
+- **13 roles passed all 3 locked filters and live-URL validation** → shipped to the shortlist below. 1 more passed filters but was cut for weak role-fit (pre-sales, not hands-on IC); 0 were dropped this run for citizenship/clearance gating (the 3 Leidos leads checked all failed the observability filter independently, so the eligibility gate wasn't the deciding factor).
+- **1 `[ENERGY]` role** (Crusoe Energy, Bellevue WA — 3rd consecutive confirmed-live run). **7 `[SEATTLE]`-tagged** onsite/hybrid roles.
 - **New employer discovered this run: Okta.** Its Greenhouse board has at least 5 Bellevue-WA-eligible SRE/reliability roles naming Terraform/Ansible plus Splunk/Datadog/observability explicitly — the strongest new-source find in several runs. Added to `resources/sources.md`.
-- **Top recurring stack overlap:** Terraform (every shortlisted role) + a named observability/SIEM tool (Splunk, Datadog, Grafana, Panther) in 9 of 12 roles — a stronger-than-usual observability-tool-naming rate this run.
-- GitLab remains the single highest-yield individual source (3 of 12 shortlisted, after curating 2 more for redundancy); LinkedIn's direct job-URL indexing gap persists for a 4th+ consecutive run (structural WebSearch limitation, not a query problem).
+- **Top recurring stack overlap:** Terraform (every shortlisted role) + a named observability/SIEM tool (Splunk, Datadog, Grafana, Prometheus, Panther) in 10 of 13 roles — a stronger-than-usual observability-tool-naming rate this run.
+- GitLab remains the single highest-yield individual source (3 of 13 shortlisted, after curating 2 more for redundancy); LinkedIn's direct job-URL indexing gap persists for a 4th+ consecutive run (structural WebSearch limitation, not a query problem).
 
-## Top picks (5)
+**Correction note (post-publish):** this run's three parallel collection passes briefly duplicated effort on the energy and LinkedIn/follow-up slices, which caused one qualifying role — Zscaler's "Production Engineer" (Bellevue, WA/San Jose, CA hybrid) — to be found by one pass and dropped on the other's re-sweep of the same board before the report was first published. It has been added back below after direct re-validation. See `logs/job-market-scan-2026-10-19.json` for the full discrepancy note.
+
+## Top picks (6)
 
 **1. Staff Site Reliability Engineer – Splunk — Okta `[SEATTLE]`**
 Bellevue, WA (also Chicago/NYC/SF/DC). Owns and evolves Okta's Splunk ecosystem for observability at scale — about as direct a match to a SIEM/telemetry-pipeline background as this scan finds. Terraform, Splunk, Python, observability/telemetry all explicitly named.
@@ -26,7 +28,10 @@ Bellevue, WA. GPU-cloud infrastructure support with Terraform and Grafana named.
 **5. Site Reliability Engineer, Infrastructure Platforms — AMER — GitLab**
 Remote, US/Canada. Terraform-based infra-platform ownership with explicit SRE observability ownership (metrics/logging/alerting/SLOs). GitLab's highest-tenure recurring source continues to deliver.
 
-## Full shortlist (12)
+**6. Production Engineer — Zscaler `[SEATTLE]`**
+Hybrid, Bellevue, WA or San Jose, CA (3 days/week). Near-literal match to the candidate's own profile line: hardening multi-cloud infrastructure (AWS, GCP, bare-metal) with Terraform + Ansible, and maturing observability (Prometheus, Grafana, OpenTelemetry) to cut incident response time. Python/Go automation-first culture.
+
+## Full shortlist (13)
 
 - **Staff Site Reliability Engineer – Splunk** — Okta `[SEATTLE]`
   - **Location**: Bellevue, WA (hybrid; also Chicago/NYC/SF/Washington DC)
@@ -112,6 +117,13 @@ Remote, US/Canada. Terraform-based infra-platform ownership with explicit SRE ob
   - **Apply link**: https://ffive.wd5.myworkdayjobs.com/f5jobs/job/Seattle/Site-Reliability-Engineer_RP1038966
   - **Source**: Workday JSON API — F5 careers (WebFetch renders empty SPA shell; API-verified)
 
+- **Production Engineer** — Zscaler `[SEATTLE]`
+  - **Location**: Hybrid, 3 days/week — Bellevue, WA or San Jose, CA
+  - **Stack match**: Linux, Terraform, Ansible, Python/Go, Prometheus, Grafana, OpenTelemetry, observability (multi-cloud: AWS, GCP, bare-metal)
+  - **Why it fits**: Directly mirrors the candidate's own specialization — hardening multi-cloud infrastructure with Terraform/Ansible and maturing observability/telemetry to reduce MTTM; added as a correction after a parallel collection pass found it live but a later re-sweep of the same board missed it (see log for discrepancy note).
+  - **Apply link**: https://job-boards.greenhouse.io/zscaler/jobs/5158936007
+  - **Source**: Greenhouse JSON API — Zscaler careers (board token `zscaler`); re-verified directly 2026-10-19
+
 ## Sources & method
 
 Scan date: 2026-10-19. Filters applied per `resources/sources.md` (locked): (1) Linux+IaC — Terraform and/or Ansible explicitly named; (2) observability/SIEM/security angle; (3) US-remote eligible OR onsite/hybrid in Greater Seattle. Every apply link above was validated live this run via WebFetch and/or the employer's ATS JSON API (Greenhouse/Ashby/Workday), per workflow Step 3.5 — no aggregator or search-snippet URL shipped.
@@ -124,3 +136,5 @@ Full per-source coverage, every URL fetched, and every ATS API call made are rec
 **Cut for weak fit** (passed keyword filters but judged not a genuine match): Wiz's "Senior Partner Solutions Architect – GSI" (Remote-USA) — names Terraform/Ansible/SIEM/telemetry but is a pre-sales/solutions-architect role, not hands-on engineering; consistent with 3+ prior runs' judgment on this same req.
 
 **Notable gap**: Nordstrom Tech's careers site is reachable, but all 3 search-indexed SRE/DevOps job URLs found via web search 404'd against the live site this run (known high dead-link-rate pattern for search-indexed Nordstrom IDs). A full page-by-page crawl (needed given the site's non-functional on-page search box) was out of this run's time budget — worth a dedicated deeper pass next run.
+
+**Post-publish correction**: this run's collection briefly fanned out to 3 parallel passes, two of which ended up re-covering the energy-sector and LinkedIn/follow-up-lead slices independently rather than consuming each other's results. One pass's direct Zscaler board sweep found and live-validated a qualifying "Production Engineer" req (Bellevue, WA/San Jose, CA); the other pass's later independent re-sweep of the same board reported 0 qualifying and that version shipped first. The role was re-validated directly and added to the shortlist above (now 13, up from 12) immediately after publish. No other discrepancies were found between the passes on spot-check.

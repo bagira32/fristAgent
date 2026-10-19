@@ -7,20 +7,25 @@
   "results": {
     "raw_hits_note": "Approximate count of postings whose individual JD was opened/evaluated against the 3 filters. Several thousand more reqs were scanned in bulk at board-level (e.g. Cloudflare 437, Datadog 428, Elastic 383, Palantir 310, Canonical 309, Octopus/Kraken 171, Palo Alto Networks 106+ via Workday search, Grafana Labs 122, GitLab 228) via keyword grep/search without every individual JD being opened, so this figure undercounts true board-level scan volume.",
     "raw_hits_collected_approx": 95,
-    "passed_all_locked_filters": 13,
-    "passed_all_locked_filters_fully_shippable": 12,
+    "passed_all_locked_filters": 14,
+    "passed_all_locked_filters_fully_shippable": 13,
     "passed_all_locked_filters_eligibility_gated_flagged": 0,
-    "final_shortlist_shipped": 12,
+    "final_shortlist_shipped": 13,
     "dropped_after_curation_quality_or_redundancy": 4,
     "dropped_after_filter_or_validation_approx": 210,
-    "dropped_inconclusive_egress_or_unresolvable_ats_approx": 18
+    "dropped_inconclusive_egress_or_unresolvable_ats_approx": 18,
+    "post_publish_correction_note": "Zscaler 'Production Engineer' (job 5158936007, Bellevue WA/San Jose CA hybrid) was found live-qualifying by the LinkedIn/follow-up-leads collection pass, but a second, duplicative collection pass (see token_usage note) independently re-swept Zscaler's board afterward and reported 0 qualifying, and that version's report/log/sources.md/commit shipped first without reconciling the two passes. The orchestrating session re-validated the job directly via the Greenhouse JSON API post-publish (confirmed 200, Terraform+Ansible+Prometheus+Grafana+OpenTelemetry present, no citizenship/clearance gate in the JD body) and amended the shortlist from 12 to 13 roles in a follow-up commit."
   },
   "token_usage": {
-    "note": "This run's collection was performed directly on the main thread (a background fork spawn for the cloud-native/Seattle slice was attempted but the session's concurrent-subagent limit meant the work was re-done on the main thread) plus one single-concurrency fork for part of the cloud-native slice. Main-thread usage is NOT exact - Claude has no tool that reports its own token count - the figures below are a rough proxy from tool-call volume, not a real measurement.",
-    "subagents": [],
-    "subagent_total_tokens": 0,
-    "subagent_total_tool_uses": 0,
-    "main_thread_tool_calls_estimate": { "web_fetch": 16, "bash_curl_api_calls": 45, "web_search": 4 }
+    "note": "Three collection passes actually ran this run, concurrently: a dedicated energy-sector fork, a dedicated LinkedIn/follow-up-leads fork, and the cloud-native/Seattle-majors fork. The cloud-native/Seattle fork mis-read its own prior turn and, instead of stopping after its assigned slice, redundantly re-ran the energy-sector and LinkedIn/follow-up collection itself on top of its own slice, then independently wrote the report/log/sources.md update and committed+pushed to master without reconciling against the other two forks' actual results. This duplicated ~2x the intended collection work and discarded the energy and LinkedIn forks' token/tool-use telemetry (not folded into this log). The figures below are exact for the two discarded forks and a rough main-thread/fork-combined proxy for the rest.",
+    "subagents": [
+      { "label": "energy-sector collection (fork, results superseded/duplicated by cloud-native fork's own re-collection)", "tokens": 140929, "tool_uses": 16, "duration_ms": 157253 },
+      { "label": "LinkedIn + follow-up leads collection (fork, results superseded/duplicated by cloud-native fork's own re-collection; this fork correctly found the Zscaler Production Engineer role the final report initially missed)", "tokens": 156379, "tool_uses": 30, "duration_ms": 299559 },
+      { "label": "cloud-native/Seattle-majors collection (fork; scope-crept into energy + LinkedIn re-collection, then wrote report/log/sources.md and committed+pushed)", "tokens": 339128, "tool_uses": 96, "duration_ms": 1134948 }
+    ],
+    "subagent_total_tokens": 636436,
+    "subagent_total_tool_uses": 142,
+    "main_thread_tool_calls_estimate": { "web_fetch": 1, "bash_curl_api_calls": 1, "web_search": 0, "note": "main thread (orchestrator) only re-validated the one disputed Zscaler job post-publish; all collection was done by the 3 forks above" }
   },
   "timing": {
     "step2_collection_minutes_approx": 35,
@@ -41,8 +46,8 @@
     },
     "aggregators_and_linkedin": {
       "queried": ["LinkedIn Jobs (2 query variants)","SmarterDx","Garner Health","Paxos","BlackCloak","Zscaler","Aalyria","DigitalOcean","Epic Games","Qlik","Experian"],
-      "yielded_raw_hits": ["SmarterDx (1 qualifying — Senior Security Engineer 5204868007, reconfirmed live 2nd+ consecutive run)","Garner Health (2 keyword hits of 80 reqs; 1 shipped — Senior SRE 6180042004; Staff Security Engineer 6200743004 checked but lacks a named observability/SIEM term this run, cut as borderline)"],
-      "yielded_nothing": ["LinkedIn direct search (0 linkedin.com/jobs URLs across 2 query variants — 4th+ consecutive run with this indexing gap; site: operator still not honored by WebSearch for linkedin.com/jobs)","Paxos (20 reqs via Ashby — 'Security Engineer, Detection and Response' Remote-US checked: SIEM+telemetry present but no Terraform/Ansible named, fails IaC filter; 4th+ consecutive non-qualifying run)","BlackCloak (20 reqs via Lever, 0 technical infra titles — 4th consecutive non-qualifying run, all sales/CS/incident-responder titles)","Zscaler (365 reqs, 8 SRE/security-titled keyword hits — all onsite India/Netherlands/Santa Clara or Remote-USA-but-SIEM-only-no-IaC; 'Insider Risk Security Engineer' also citizenship-gated)","Aalyria/Rippling, DigitalOcean, Epic Games, Qlik, Experian, SmartRecruiters API (all egress-blocked again, CONNECT tunnel 403 — 3rd+ consecutive run for most)"]
+      "yielded_raw_hits": ["SmarterDx (1 qualifying — Senior Security Engineer 5204868007, reconfirmed live 2nd+ consecutive run)","Garner Health (2 keyword hits of 80 reqs; 1 shipped — Senior SRE 6180042004; Staff Security Engineer 6200743004 checked but lacks a named observability/SIEM term this run, cut as borderline)","Zscaler (1 qualifying — Production Engineer 5158936007, Bellevue WA/San Jose CA hybrid, Terraform+Ansible+Prometheus/Grafana/OpenTelemetry; found by the dedicated LinkedIn/follow-up fork, initially dropped from the shipped report when a second fork's independent board re-sweep reported 0 qualifying without reconciling against this result; re-validated directly post-publish and added — see post_publish_correction_note)"],
+      "yielded_nothing": ["LinkedIn direct search (0 linkedin.com/jobs URLs across 2 query variants — 4th+ consecutive run with this indexing gap; site: operator still not honored by WebSearch for linkedin.com/jobs)","Paxos (20 reqs via Ashby — 'Security Engineer, Detection and Response' Remote-US checked: SIEM+telemetry present but no Terraform/Ansible named, fails IaC filter; 4th+ consecutive non-qualifying run)","BlackCloak (20 reqs via Lever, 0 technical infra titles — 4th consecutive non-qualifying run, all sales/CS/incident-responder titles)","Aalyria/Rippling, DigitalOcean, Epic Games, Qlik, Experian, SmartRecruiters API (all egress-blocked again, CONNECT tunnel 403 — 3rd+ consecutive run for most)"]
     }
   },
   "sites_visited": [
@@ -73,7 +78,8 @@
     { "url": "careers.nordstrom.com/ (root)", "method": "curl HEAD", "status": "200", "outcome": "site itself reachable; full crawl not attempted this run (out of budget)" },
     { "url": "github.careers ; www.amazon.jobs ; jobs.careers.microsoft.com ; www.t-mobile.com/careers/search-jobs", "method": "curl", "status": "403 (CONNECT tunnel)", "outcome": "egress-blocked, unchanged" },
     { "url": "jobs.siemens-energy.com ; www.enphase.com ; www.chargepoint.com ; careers.evgo.com ; www.constellationenergy.com ; jobs.nexteraenergy.com ; davidenergy.com ; careers-exeloncorp.icims.com ; careers.se.com ; www.tesla.com/careers", "method": "curl", "status": "403 (CONNECT tunnel)", "outcome": "egress-blocked, unchanged" },
-    { "url": "ats.rippling.com ; www.digitalocean.com ; epicgames.avature.net ; www.qlik.com ; jobs.experian.com ; api.smartrecruiters.com", "method": "curl", "status": "403 (CONNECT tunnel)", "outcome": "egress-blocked, unchanged" }
+    { "url": "ats.rippling.com ; www.digitalocean.com ; epicgames.avature.net ; www.qlik.com ; jobs.experian.com ; api.smartrecruiters.com", "method": "curl", "status": "403 (CONNECT tunnel)", "outcome": "egress-blocked, unchanged" },
+    { "url": "job-boards.greenhouse.io/zscaler/jobs/5158936007", "method": "Greenhouse JSON API (curl, post-publish re-validation)", "status": "200 live (API)", "outcome": "pass — shortlisted [SEATTLE], added in post-publish correction; title/location/Terraform/Ansible/Prometheus/Grafana/OpenTelemetry all confirmed present, no citizenship/clearance language found" }
   ],
   "api_hits": [
     { "endpoint": "boards-api.greenhouse.io/v1/boards/okta/jobs?content=true (385 reqs)", "ats": "Greenhouse", "status": "200", "outcome": "NEW SOURCE — 5 Bellevue-WA-eligible SRE/reliability reqs pass both stack filters; 2 shipped, 3 cut for redundancy" },
@@ -111,7 +117,8 @@
     { "endpoint": "api.ashbyhq.com/posting-api/job-board/paxos (20 reqs)", "ats": "Ashby", "status": "200", "outcome": "1 candidate checked in detail (SIEM+telemetry but no IaC), 0 qualifying, 4th consecutive run" },
     { "endpoint": "api.lever.co/v0/postings/BlackCloak?mode=json (20 reqs)", "ats": "Lever", "status": "200", "outcome": "0 qualifying, 4th consecutive run, 0 technical infra titles" },
     { "endpoint": "api.greenhouse.io/v1/boards/zscaler/jobs (365 reqs)", "ats": "Greenhouse", "status": "200", "outcome": "8 SRE/security keyword hits, 2 checked in detail, 0 qualifying (onsite/citizenship-gated/no-IaC)" },
-    { "endpoint": "api.smartrecruiters.com/v1/companies/experian/postings", "ats": "SmartRecruiters", "status": "403/connect_rejected", "outcome": "egress-blocked, not a real API result" }
+    { "endpoint": "api.smartrecruiters.com/v1/companies/experian/postings", "ats": "SmartRecruiters", "status": "403/connect_rejected", "outcome": "egress-blocked, not a real API result" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/zscaler/jobs/5158936007?questions=true (post-publish re-check)", "ats": "Greenhouse", "status": "200", "outcome": "reconfirmed live and qualifying — added to shortlist in correction" }
   ],
   "sources_md_updates_applied": [
     "Added: Okta (NEW formalized source) — Greenhouse, no slug needed (board token `okta`), 385 reqs, at least 5 Bellevue-WA-eligible SRE/reliability roles naming Terraform/Ansible plus Splunk/Datadog/observability explicitly. okta.com itself is egress-blocked (DNS ENOTFOUND) — use the Greenhouse-hosted job-boards.greenhouse.io/okta/jobs/<id> URL as the apply link (same pattern as Stripe/Fastly), verified via Greenhouse JSON API. Recurring reliable picks: req 7658254 (Staff SRE - Splunk) and 8160050 (Staff SRE - Kubernetes).",
@@ -126,7 +133,8 @@
     "Noted: Workiva's Workday jobs-search POST still 422s on every payload tried — unresolved for a 4th consecutive run.",
     "Noted: Aalyria/Rippling, DigitalOcean, Epic Games, Qlik, Experian, SmartRecruiters all egress-blocked again this run (3rd+ consecutive for most) — no new ATS discovery possible until domains become reachable.",
     "Noted: Nordstrom Tech's site remains reachable (200) but all 3 search-indexed job URLs tried this run 404'd — the dead-link pattern persists and a full crawl (site reports ~1,385 jobs/139 pages) is needed to get a reliable hit, which exceeded this run's time budget.",
-    "Noted: GitHub, Amazon, Microsoft, T-Mobile remain egress-blocked with no new ATS found for any."
+    "Noted: GitHub, Amazon, Microsoft, T-Mobile remain egress-blocked with no new ATS found for any.",
+    "Added (post-publish correction): Zscaler's 'Production Engineer' req (5158936007, Bellevue WA/San Jose CA hybrid) is a confirmed qualifying recurring-candidate pick — strong Terraform+Ansible+multi-cloud+observability (Prometheus/Grafana/OpenTelemetry) match. Recheck this specific req ID each run alongside the existing Zscaler citizenship-gated-role tracking."
   ],
   "dashboard_update": "Attempted per workflow Step 8: read all files under logs/ (2026-09-09, 2026-09-10-b, 2026-09-14-b, 2026-09-21, 2026-09-28, 2026-10-05, 2026-10-12, 2026-10-19) and republished the combined dataset to the dashboard Artifact URL in resources/monitor.md."
 }
