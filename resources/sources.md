@@ -2,7 +2,7 @@
 
 Reusable seed list for the **Cloud / DevOps / SRE — US-Remote or Seattle-area**
 market scan.
-Last reviewed: 2026-10-12.
+Last reviewed: 2026-10-19.
 
 ## Candidate profile (anchors the filter)
 
@@ -95,6 +95,8 @@ JSON API and is what should ship as the apply link.
 
 ### Seattle-area major employers (onsite/hybrid OK per commute-range filter, added 2026-09-10)
 
+- **Okta** (Greenhouse, board token `okta`, no company-prefix needed — 385 reqs) — **NEW formalized source, 2026-10-19.** Large Bellevue, WA hybrid hub with at least 5 SRE/reliability reqs naming Terraform and/or Ansible plus Splunk/Datadog/Grafana/Prometheus observability explicitly — the strongest new-source find in several runs. **`okta.com` itself is egress-blocked (DNS ENOTFOUND)** — the Greenhouse redirect target 404s on direct domain fetch, same failure pattern as Stripe/Fastly; use the Greenhouse-hosted URL (`job-boards.greenhouse.io/okta/jobs/<id>`) as the apply link, verified via the Greenhouse JSON API (`boards-api.greenhouse.io/v1/boards/okta/jobs/<id>?content=true`). **Recurring reliable picks to recheck each run**: req `7658254` ("Staff Site Reliability Engineer - Splunk", Bellevue/Chicago/NYC/SF/DC) and req `8160050` ("Staff Site Reliability Engineer - Kubernetes", same locations, explicit Terraform+Ansible pairing). Also worth rechecking: `8268917` (Senior SRE - EPG), `7317857` (Senior Manager, SRE - Infrastructure Platform — manager-tier), `7617976` (Senior Database Reliability Engineer). Most Okta Seattle-area postings list Bellevue alongside Chicago/NYC/SF/DC as interchangeable hybrid options — confirm Bellevue is actually in the location list before shipping.
+
 - Amazon (AWS), Microsoft, F5 Networks, T-Mobile, Nordstrom Tech — high role volume but
   JDs at this scale often don't name specific IaC tools (internal tooling common).
   F5's Workday tenant is `ffive.wd5.myworkdayjobs.com`, site `f5jobs` — the
@@ -186,6 +188,22 @@ For WebSearch / Google:
 - Re-review this file quarterly — employers shut down hiring or change ATS hosts.
 - If a company appears 3+ runs in a row with no qualifying role, drop it.
 - Add new finds under the right section; keep alphabetical inside each group.
+
+### From 2026-10-19 run
+
+- **Okta added as a NEW formalized source** — see Seattle-area section above. Biggest single-source find in several runs.
+- **Red Hat's prior-run TOP PICK req R-059619 ("Senior Specialist Solution Architect", Raleigh) is now confirmed CLOSED** (0 results on ID-specific Workday search). No replacement Red Hat req found this run passing both locked filters — a new Remote-US-NY lead (R-059757-1, "Solution Architect") names Ansible but no observability/SIEM tool, so it doesn't qualify.
+- **Crusoe Energy's Bellevue "Sr. Cloud Support Engineer - Weekend Shift" req (`43f1edf3-8459-4573-87db-9f00293e3118`) confirmed live for a 3rd consecutive run** — now a fully reliable recurring `[ENERGY][SEATTLE]` pick, same status tier as F5's Seattle req.
+- **F5's Seattle req RP1038966 confirmed live for a 3rd consecutive run** — now a fully reliable recurring `[SEATTLE]` pick. RP1038431 ("Security Engineer - Incident response") also still live but still lacks any Terraform/Ansible mention.
+- **Octopus Energy/Kraken's board grew to 171 postings (from 151) but has 0 DevOps/SRE/Infra-titled reqs for a 2nd consecutive run**, not just 0 qualifying — the pattern now looks structural (the board serves almost entirely UK/EU customer-ops/field-trades roles with a small US customer-support presence). Consider demoting to a quick-check-only source.
+- **Hut8's board grew to 53 reqs with 7 new "Highrise AI" remote postings** (AI Infrastructure Operations Engineer, Network Engineer, NOC Engineer ×2, Principal AI Infrastructure/Network Engineer, Senior SRE) — a new technical-role wave worth a closer look next run, though this run's Senior SRE req named no Terraform/Ansible/observability tool.
+- **Paxos and BlackCloak are both now at a 4th consecutive non-qualifying run** — recommend formal demotion from active automated-query rotation per the 3-strikes convention; spot-check only going forward rather than full board pulls.
+- **Tesla Energy is now 403 for 6+ consecutive runs** — recommend formalizing as a permanent skip rather than retrying each run.
+- **LinkedIn's `site:linkedin.com/jobs` indexing gap persists for a 4th+ consecutive run** — reconfirmed structural WebSearch limitation, not a query-wording issue. Treat LinkedIn as effectively unusable for direct job-URL discovery until this changes; aggregator-sourced company names remain the de facto lead source.
+- **Workiva's Workday jobs-search POST still 422s on every payload tried** — unresolved for a 4th consecutive run.
+- **Nordstrom Tech's site remains reachable (200) but all 3 search-indexed job URLs tried this run 404'd** — the dead-link pattern from 2026-09-21/09-28 persists despite the 2026-10-12 "directly crawlable" finding. A full page-by-page crawl (site reports ~1,385 jobs/139 pages) is needed to reliably surface a current qualifying role, which exceeded this run's time budget — flag for a dedicated deeper pass next run rather than relying on search-indexed IDs.
+- **Aalyria/Rippling, DigitalOcean, Epic Games, Qlik, Experian, SmartRecruiters** all egress-blocked again this run (3rd+ consecutive for most) — no new ATS discovery possible until these domains become reachable from this environment.
+- Reviewed 2026-10-12 → 2026-10-19.
 
 ### From 2026-10-12 run
 
