@@ -10,6 +10,8 @@ Terraform, and Ansible. Proven track record of deploying global-scale SIEM ecosy
 transforming fragmented log data into actionable security intelligence through SRE and
 DevSecOps principles.
 
+**Work eligibility:** US citizen. Roles that require US citizenship, Green Card/permanent residency, or eligibility for a US government clearance (Public Trust, Secret, etc.) are a fit and must NOT be filtered out. Holds no active clearance today, so tag roles that require an *active* clearance at hire rather than dropping them.
+
 # Rules
 
 - Always ask clarifying questions before starting a complex task.
