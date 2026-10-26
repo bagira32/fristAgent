@@ -84,6 +84,15 @@ Drop any role that fails any of:
    *outside* the Seattle area still disqualifies a role even if remote isn't
    required elsewhere in the JD.
 
+**Citizenship / clearance is NOT a filter.** The candidate is a US citizen.
+Never drop, hold back, or "flag as not shipped" a role because the JD requires
+US citizenship, Green Card status, Public Trust, or clearance eligibility —
+judge it on the three filters above like any other role. Tag it instead:
+`[US-CITIZEN]` for citizenship/Green-Card language, `[CLEARANCE]` for
+clearance-eligibility language, and `[CLEARANCE-ACTIVE]` (plus a one-line note)
+when an *active* clearance is required at hire, since the candidate doesn't
+hold one today.
+
 Tag any energy-sector match with `[ENERGY]`, and any Seattle-area onsite/hybrid
 match with `[SEATTLE]`, for the report.
 

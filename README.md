@@ -32,7 +32,9 @@ Running the `job-market-scan` workflow drives this sequence:
    `resources/sources.md`, capturing raw hits without filtering.
 2. **Filter** — keep only roles that hit all three locked must-haves: Linux + IaC
    (Terraform/Ansible named explicitly), an observability/SIEM/security angle, and
-   US-remote eligibility.
+   US-remote eligibility (or Seattle-area onsite/hybrid). Citizenship/clearance
+   requirements are not a filter — the candidate is a US citizen; those roles are
+   tagged, not dropped.
 3. **Validate** — every candidate apply URL is checked live (WebFetch, or the ATS's
    own JSON API for Lever/Greenhouse/Ashby/Workday) before it's allowed on the
    report. Dead, redirected, or aggregator-only links are dropped, not padded in.

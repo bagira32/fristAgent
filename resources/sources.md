@@ -9,6 +9,14 @@ Last reviewed: 2026-10-26.
 Linux Systems Engineer · multi-cloud hardening · Terraform / Ansible · Python ·
 SIEM / log pipelines · global-scale observability · DevSecOps.
 
+**Work eligibility: US citizen.** Citizenship-, Green-Card-, Public-Trust- or
+clearance-gated roles are **eligible and must be shipped** like any other role
+(tag them `[US-CITIZEN]` / `[CLEARANCE]`). Holds no active clearance today, so a
+role requiring an *active* clearance at hire still ships, tagged
+`[CLEARANCE-ACTIVE]` with a one-line note. Never drop or demote a role for
+citizenship/clearance language. (Rule added 2026-10-26 — earlier runs wrongly
+excluded these "without confirming eligibility.")
+
 ## Locked filter criteria
 
 A role must hit **ALL three** must-haves to make a shortlist:
@@ -69,7 +77,7 @@ on these three; rely on manual/LinkedIn spot-checks only if revisited.
 - Linux vendors: Red Hat, Canonical (Greenhouse token `canonical` — confirmed
   reachable 2026-10-05, the 2026-09-28 "egress-blocked" note was session-specific,
   not a persistent block), SUSE
-- Security: CrowdStrike (**correction 2026-10-26: its long-tracked "Principal Engineer – Network (Remote)" req `R30292` explicitly requires "US Citizenship or Green Card holder status" in the JD body** — this had been shipped on prior runs' shortlists without an eligibility flag; treat as eligibility-gated going forward, same tier as the Zscaler/Leidos Federal/clearance reqs, and don't ship by default), Wiz (apply via Greenhouse URLs — see note below), Sysdig,
+- Security: CrowdStrike (**correction 2026-10-26: its long-tracked "Principal Engineer – Network (Remote)" req `R30292` explicitly requires "US Citizenship or Green Card holder status" in the JD body** — this had been shipped on prior runs' shortlists without an eligibility flag; tag `[US-CITIZEN]` and ship it — candidate is a US citizen, see Candidate profile), Wiz (apply via Greenhouse URLs — see note below), Sysdig,
   Tenable, Palo Alto Networks (Cortex; Workday tenant/site confirmed 2026-10-05:
   `paloaltonetworks.wd5.myworkdayjobs.com`/`panwexternalcareers`). **Snyk's board
   moved off Greenhouse to Ashby** (confirmed 2026-10-12) — org slug `snyk`,
@@ -104,7 +112,7 @@ as a reliable recurring Seattle pick.
 
 ### Seattle-area major employers (onsite/hybrid OK per commute-range filter, added 2026-09-10)
 
-- **Okta** (Greenhouse, board token `okta`, no company-prefix needed — 385 reqs) — **NEW formalized source, 2026-10-19.** Large Bellevue, WA hybrid hub with at least 5 SRE/reliability reqs naming Terraform and/or Ansible plus Splunk/Datadog/Grafana/Prometheus observability explicitly — the strongest new-source find in several runs. **`okta.com` itself is egress-blocked (DNS ENOTFOUND)** — the Greenhouse redirect target 404s on direct domain fetch, same failure pattern as Stripe/Fastly; use the Greenhouse-hosted URL (`job-boards.greenhouse.io/okta/jobs/<id>`) as the apply link, verified via the Greenhouse JSON API (`boards-api.greenhouse.io/v1/boards/okta/jobs/<id>?content=true`). **Recurring reliable picks to recheck each run**: req `7658254` ("Staff Site Reliability Engineer - Splunk", Bellevue/Chicago/NYC/SF/DC) and req `7617976` ("Senior Database Reliability Engineer", Terraform+Ansible+Datadog+Grafana). Also worth rechecking: `8268917` (Senior SRE - EPG), `7317857` (Senior Manager, SRE - Infrastructure Platform — manager-tier). Most Okta Seattle-area postings list Bellevue alongside Chicago/NYC/SF/DC as interchangeable hybrid options — confirm Bellevue is actually in the location list before shipping. **Correction 2026-10-26: req `8160050` ("Staff Site Reliability Engineer - Kubernetes") is now confirmed CLOSED** — absent from the current Greenhouse listing after 2 consecutive runs as a tracked recurring pick; drop it from the recurring-pick list. **Possible new lead flagged 2026-10-26 (not yet validated)**: a web search surfaced `8064877` ("Staff Site Reliability Engineer (FedRAMP)", Bellevue WA on-site, Terraform/Ansible/Chef/Puppet named, $194K–$267K) — worth validating directly via the Greenhouse JSON API next run (note: FedRAMP roles sometimes carry citizenship/clearance gates — check the JD body for that before shipping).
+- **Okta** (Greenhouse, board token `okta`, no company-prefix needed — 385 reqs) — **NEW formalized source, 2026-10-19.** Large Bellevue, WA hybrid hub with at least 5 SRE/reliability reqs naming Terraform and/or Ansible plus Splunk/Datadog/Grafana/Prometheus observability explicitly — the strongest new-source find in several runs. **`okta.com` itself is egress-blocked (DNS ENOTFOUND)** — the Greenhouse redirect target 404s on direct domain fetch, same failure pattern as Stripe/Fastly; use the Greenhouse-hosted URL (`job-boards.greenhouse.io/okta/jobs/<id>`) as the apply link, verified via the Greenhouse JSON API (`boards-api.greenhouse.io/v1/boards/okta/jobs/<id>?content=true`). **Recurring reliable picks to recheck each run**: req `7658254` ("Staff Site Reliability Engineer - Splunk", Bellevue/Chicago/NYC/SF/DC) and req `7617976` ("Senior Database Reliability Engineer", Terraform+Ansible+Datadog+Grafana). Also worth rechecking: `8268917` (Senior SRE - EPG), `7317857` (Senior Manager, SRE - Infrastructure Platform — manager-tier). Most Okta Seattle-area postings list Bellevue alongside Chicago/NYC/SF/DC as interchangeable hybrid options — confirm Bellevue is actually in the location list before shipping. **Correction 2026-10-26: req `8160050` ("Staff Site Reliability Engineer - Kubernetes") is now confirmed CLOSED** — absent from the current Greenhouse listing after 2 consecutive runs as a tracked recurring pick; drop it from the recurring-pick list. **Possible new lead flagged 2026-10-26 (not yet validated)**: a web search surfaced `8064877` ("Staff Site Reliability Engineer (FedRAMP)", Bellevue WA on-site, Terraform/Ansible/Chef/Puppet named, $194K–$267K) — worth validating directly via the Greenhouse JSON API next run (FedRAMP roles often carry citizenship/clearance language — that's fine for this candidate, just tag it).
 
 - **Zscaler** (Greenhouse, board token `zscaler`, 365 reqs) — in addition to the
   long-tracked Federal/citizenship-gated SRE req (see "From 2026-09-28 run"
@@ -216,10 +224,10 @@ For WebSearch / Google:
 ### From 2026-10-26 run
 
 - **New qualifying finds**: GitLab `8889193002` ("Cloud Platform Engineer", Remote US/Canada — Terraform+Kubernetes+observability); Wiz's 2nd distinct role type `4711762006` (see Wiz note above); Stripe's first-ever qualifying Seattle role `8038771` (see Stripe note above, needs 2nd appearance to formalize); Cloudflare `7992903` ("Senior Network Engineer", Seattle WA among 4 listed locations, Ansible+observability) — cut in this run's curation for redundancy with the shortlisted Cloudflare Storage Platform role, but worth shipping next run if the shortlist has room.
-- **Corrections**: Okta req `8160050` confirmed CLOSED (see Okta note above). CrowdStrike's `R30292` now flagged as citizenship/Green-Card-gated — correcting prior runs that shipped it without an eligibility flag (see CrowdStrike note above).
+- **Corrections**: Okta req `8160050` confirmed CLOSED (see Okta note above). CrowdStrike's `R30292` noted as citizenship/Green-Card-gated (see CrowdStrike note above) — eligible for this candidate, ship with `[US-CITIZEN]` tag.
 - **Paxos and BlackCloak formally demoted** to spot-check-only after a 5th consecutive non-qualifying run (see demoted section above) — first formal demotion since the 3-strikes convention was adopted.
 - **Crusoe Energy's Bellevue req `43f1edf3-8459-4573-87db-9f00293e3118` confirmed live for a 4th consecutive run** and **F5's Seattle req `RP1038966` confirmed live for a 4th consecutive run** — both remain fully reliable recurring picks.
-- **Leidos `R-00192064`** ("Cloud Architect/Engineer", Remote US) reconfirmed live with a strong Terraform+Ansible+Datadog stack match, but still explicitly requires US citizenship + Public Trust clearance — flagged per-run rather than formalized, as in prior runs.
+- **Leidos `R-00192064`** ("Cloud Architect/Engineer", Remote US) reconfirmed live with a strong Terraform+Ansible+Datadog stack match, but requires US citizenship + Public Trust clearance — eligible for this candidate (US citizen); ship with `[US-CITIZEN]` `[CLEARANCE]` tags.
 - **Octopus Energy/Kraken**: 3rd consecutive run with zero DevOps/SRE/Infra-titled reqs (board now at 173 postings) — the structural non-technical-board read continues to hold; consider demoting to quick-check-only next run if a 4th consecutive zero occurs.
 - **Palantir**: 5th+ consecutive non-qualifying run (309 postings via Lever, 2 Seattle-WA reqs checked, neither names Terraform/Ansible) — candidate for demotion if this continues.
 - **Tesla Energy**: 403 for 7+ consecutive runs — recommend finalizing as a permanent skip rather than retrying each run.
@@ -284,7 +292,9 @@ For WebSearch / Google:
   (not only clearance-onsite field sites as in prior runs) — but every one
   found so far (Cloud Architect/Engineer R-00192064, DevSecOps Engineer –
   Intelligent Platforms & Agents R-00192493) is still citizenship- or
-  clearance-gated. Worth tracking whether a genuinely non-gated req appears.
+  clearance-gated — which is fine: the candidate is a US citizen, so ship
+  these with `[US-CITIZEN]`/`[CLEARANCE]` tags (only active-clearance-at-hire
+  reqs get the `[CLEARANCE-ACTIVE]` note).
   Also noted: Workday's `searchText` does fuzzy/relevance matching here, not
   literal substring matching — always verify via the per-job detail endpoint.
 - **Qlik and Experian**: both egress-blocked for a 2nd+ consecutive run now
@@ -338,9 +348,8 @@ For WebSearch / Google:
 - **Zscaler req 5029669007** ("Staff SRE (Production Engineer) – Federal") now lists
   **Bellevue, WA** among its eligible offices (previously only San Jose was seen) and
   passes all 3 locked filters — but its JD explicitly requires **US citizenship**.
-  Not formalized as a routine Seattle source given the citizenship gate makes it
-  unshippable without knowing the candidate's eligibility; flagged per-run instead
-  if it recurs.
+  Candidate is a US citizen, so this is eligible — ship it with a `[US-CITIZEN]`
+  tag (2026-10-26 correction; earlier runs wrongly held it back).
 - **Egress blocks newly observed this run**: `jobs.siemens-energy.com` (was
   reachable on 2026-09-28 with Romania/India roles found, now blocked), `www.evgo.com`
   / `careers.evgo.com` / `ev.careers`, `www.enphase.com`, `jobs.nexteraenergy.com`,
