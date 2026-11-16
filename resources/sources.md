@@ -2,7 +2,7 @@
 
 Reusable seed list for the **Cloud / DevOps / SRE — US-Remote or Seattle-area**
 market scan.
-Last reviewed: 2026-11-02.
+Last reviewed: 2026-11-16.
 
 ## Candidate profile (anchors the filter)
 
@@ -42,7 +42,10 @@ Nice-to-have (boost a match but not required):
 
 ### Energy-sector employers (check career pages directly)
 
-- Octopus Energy / Kraken Technologies — `octopus.energy/careers`, `kraken.tech/careers`
+- Octopus Energy / Kraken Technologies — `octopus.energy/careers`, `kraken.tech/careers`.
+  **Update 2026-11-16: 6th consecutive structural-zero run** (163 postings, still
+  zero DevOps/SRE/Infra titles) — recommend moving to monthly rather than weekly
+  checks.
 - Tesla Energy — `tesla.com/careers` (403 at the site level 4 consecutive runs, not a proxy issue)
 - Sunrun, Sunnova (Greenhouse token `sunnova`, confirmed 2026-10-05, thin board), Enphase — solar/storage
 - ChargePoint, EVgo — EV charging
@@ -54,7 +57,11 @@ Nice-to-have (boost a match but not required):
 - Crusoe Energy (Ashby org slug `Crusoe`), Hut 8 (Greenhouse token `hut8`, **demoted
   2026-11-09 — board has pivoted entirely to Miami-onsite data-center-build/legal/
   finance roles, the previously-tracked "Highrise AI" remote SRE/Infra/NOC postings
-  are gone entirely; remove from weekly rotation unless Highrise AI reappears**)
+  are gone entirely; remove from weekly rotation unless Highrise AI reappears**.
+  **Correction 2026-11-16: confirmed zero technical roles for a 2nd consecutive
+  check** — recommend full removal from rotation rather than conditional
+  demotion; only revisit if a specific new lead resurfaces via aggregator/
+  LinkedIn)
   — energy/compute crossover. **Correction 2026-10-05: Crusoe's board is NOT fully
   onsite-only** — it now includes Remote-US and Bellevue, WA postings alongside the
   SF/Denver/Dublin onsite roles; worth checking Bellevue/Remote-US postings
@@ -83,6 +90,12 @@ Nice-to-have (boost a match but not required):
   at hire, tag `[CLEARANCE-ACTIVE]` `[US-CITIZEN]`. Re-check this ID each run
   alongside the onsite clearance-site titles (which remain excluded under filter 3
   — no remote option, not Seattle-area — regardless of citizenship eligibility).
+  **Correction 2026-11-16: req `R-00196252` is confirmed CLOSED** (404 on direct
+  fetch, absent from 5 searchText sweeps). No qualifying remote-US replacement
+  found this run; closest candidate `R-00193640` ("Cloud Infrastructure Engineer",
+  Remote US) fails the observability/SIEM filter and is junior-level (1–3 yrs)
+  besides. **Leidos has zero qualifying roles this run** — needs a fresh full
+  remote-facet sweep next run.
 
 **Dropped 2026-10-05 per the "3+ consecutive runs with no qualifying source"
 convention**: Uplight, AutoGrid, GridX — 4th consecutive run with zero resolvable
@@ -98,14 +111,17 @@ on these three; rely on manual/LinkedIn spot-checks only if revisited.
   Palo Alto Networks post-acquisition; no PANW reqs tagged Chronosphere found yet.
 - Infra / edge: Cloudflare, Fastly, GitLab, GitHub
 - Linux vendors: Red Hat (Workday tenant `redhat.wd5.myworkdayjobs.com`, site `Jobs`
-  — **correction 2026-11-09: drop the "international/Raleigh-onsite only" framing**,
-  req `R-060309-1` ("OpenShift Infrastructure - Senior Consultant") is genuinely
-  US-remote with Ansible+Terraform/Helm+Prometheus/Grafana/ELK/Splunk, a first for
-  this scan's history — re-check this ID each run, and worth a full-board
-  Terraform/Ansible sweep next run rather than spot checks), Canonical (Greenhouse
+  — **correction 2026-11-16: formalized recurring pick `R-060309-1` is now
+  confirmed CLOSED** (absent from both an ID-specific search and a broad
+  terraform/ansible sweep, 6 results, none matching). A new lead, `R-060411`
+  ("Senior Architect, OpenShift Infrastructure – Active TS/SCI Clearance",
+  Remote US CO), names Terraform+Ansible but has **no SIEM/observability term
+  anywhere** in the JD — fails filter 2, not shipped. **Red Hat has zero
+  qualifying roles this run** — needs a fresh full-board Terraform/Ansible+
+  observability sweep next run rather than re-checking the dead ID), Canonical (Greenhouse
   token `canonical` — confirmed reachable 2026-10-05, the 2026-09-28
   "egress-blocked" note was session-specific, not a persistent block), SUSE
-- Security: CrowdStrike (**correction 2026-10-26: its long-tracked "Principal Engineer – Network (Remote)" req `R30292` explicitly requires "US Citizenship or Green Card holder status" in the JD body** — this had been shipped on prior runs' shortlists without an eligibility flag; tag `[US-CITIZEN]` and ship it — candidate is a US citizen, see Candidate profile), Wiz (apply via Greenhouse URLs — see note below), Sysdig,
+- Security: CrowdStrike (**correction 2026-10-26: its long-tracked "Principal Engineer – Network (Remote)" req `R30292` explicitly requires "US Citizenship or Green Card holder status" in the JD body** — this had been shipped on prior runs' shortlists without an eligibility flag; tag `[US-CITIZEN]` and ship it — candidate is a US citizen, see Candidate profile), Wiz (apply via Greenhouse URLs — see note below), Sysdig (**correction 2026-11-16: the long-tracked "Director of Security Engineering" req is no longer even on the board** — 34 reqs now, down from 38, title absent entirely — stop tracking it),
   Tenable, Palo Alto Networks (Cortex; Workday tenant/site confirmed 2026-10-05:
   `paloaltonetworks.wd5.myworkdayjobs.com`/`panwexternalcareers`). **Snyk's board
   moved off Greenhouse to Ashby** (confirmed 2026-10-12) — org slug `snyk`,
@@ -142,15 +158,14 @@ as a reliable recurring Seattle pick.
 
 - **Okta** (Greenhouse, board token `okta`, no company-prefix needed — 385 reqs) — **NEW formalized source, 2026-10-19.** Large Bellevue, WA hybrid hub with at least 5 SRE/reliability reqs naming Terraform and/or Ansible plus Splunk/Datadog/Grafana/Prometheus observability explicitly — the strongest new-source find in several runs. **`okta.com` itself is egress-blocked (DNS ENOTFOUND)** — the Greenhouse redirect target 404s on direct domain fetch, same failure pattern as Stripe/Fastly; use the Greenhouse-hosted URL (`job-boards.greenhouse.io/okta/jobs/<id>`) as the apply link, verified via the Greenhouse JSON API (`boards-api.greenhouse.io/v1/boards/okta/jobs/<id>?content=true`). **Recurring reliable pick to recheck each run**: req `7617976` ("Senior Database Reliability Engineer", Terraform+Ansible+Datadog+Grafana). Also worth rechecking: `8268917` (Senior SRE - EPG), `7317857` (Senior Manager, SRE - Infrastructure Platform — manager-tier). Most Okta Seattle-area postings list Bellevue alongside Chicago/NYC/SF/DC as interchangeable hybrid options — confirm Bellevue is actually in the location list before shipping. **Correction 2026-10-26: req `8160050` ("Staff Site Reliability Engineer - Kubernetes") is now confirmed CLOSED** — absent from the current Greenhouse listing after 2 consecutive runs as a tracked recurring pick; drop it from the recurring-pick list. **Correction 2026-11-02: req `7658254` ("Staff Site Reliability Engineer - Splunk") had its JD changed/retitled to "Splunk Infrastructure Engineer" and no longer names Terraform/Ansible — drop it from the recurring-pick list.** **Correction 2026-11-02: the "possible new lead" `8064877` ("Staff Site Reliability Engineer (FedRAMP)") flagged on 2026-10-26 is confirmed to NOT exist** (clean 404 against Okta's current board) — it was a stale aggregator-indexed ID; do not re-add without a fresh live sighting. **Added 2026-11-09: a 2nd distinct Seattle-area recurring pick confirmed** — req `8268917` ("Senior Site Reliability Engineer - EPG", Bellevue WA/San Francisco CA, Terraform+Datadog/Splunk/Grafana) was independently found by two separate collection passes this run, a strong signal of fit. Both this req and `7617976` (DBRE) carry a US-Person/FedRAMP citizenship requirement — tag both `[US-CITIZEN]` going forward (previously only noted on one).
 
-- **Zscaler** (Greenhouse, board token `zscaler`, 365 reqs) — in addition to the
-  long-tracked Federal/citizenship-gated SRE req (see "From 2026-09-28 run"
-  notes below), req `5158936007` ("Production Engineer", hybrid 3 days/week —
-  Bellevue, WA or San Jose, CA) is a **confirmed qualifying pick, added
-  2026-10-19 as a post-publish correction** — explicit Terraform + Ansible +
-  Prometheus/Grafana/OpenTelemetry across multi-cloud (AWS/GCP/bare-metal), no
-  citizenship/clearance language in the JD. Apply via
-  `job-boards.greenhouse.io/zscaler/jobs/5158936007`. Re-check this specific
-  req ID each run alongside the Federal req.
+- **Zscaler** (Greenhouse, board token `zscaler`, 377 reqs) — **both long-tracked
+  recurring picks are now dead, confirmed 2026-11-16**: req `5158936007`
+  ("Production Engineer", the Bellevue/San Jose `[SEATTLE]` pick) is 404'd off
+  the board entirely, and req `5029669007` ("Staff SRE Federal") is still live
+  but its JD now requires strict Santa Clara, CA 3-day-onsite with no
+  Bellevue/remote language — it no longer passes filter 3. **Zscaler has zero
+  qualifying roles as of this run** — needs a fresh full-board Terraform/Ansible
+  sweep next run rather than re-checking these two dead IDs.
 
 - Amazon (AWS), Microsoft, F5 Networks, T-Mobile, Nordstrom Tech — high role volume but
   JDs at this scale often don't name specific IaC tools (internal tooling common).
@@ -195,14 +210,30 @@ as a reliable recurring Seattle pick.
 - **Garner Health** — Greenhouse token `garnerhealth`. SRE/platform-engineering
   roles with Terraform + Datadog observability — 2 qualifying reqs found 2026-10-05
   (one carried over from a 2026-09-28 lead that wasn't validated at the time, now
-  confirmed live and qualifying).
+  confirmed live and qualifying). **Correction 2026-11-16: the recurring "Senior
+  SRE" pick is gone from the board** — only two thin-stack Security Engineer twins
+  remain (`6238004004`, `6200743004`), both held back as borderline (Terraform +
+  Wiz/Cyberhaven named but no SIEM/SOAR/detection-engineering term beyond generic
+  "security monitoring"). Garner Health has no clearly qualifying role this run.
 - **Coalfire** — Lever slug `coalfire`. **NEW source, 2026-11-09.** FedRAMP/NIST
   800-53 compliance consultancy — recurring pick candidate `e2620778-f8e9-4b22-
   910e-ae0edfcc8238` ("Senior Site Reliability Engineer (FedRAMP)", Remote US,
   Terraform AND Ansible both named plus a dedicated SIEM/log-pipeline/observability
   specialty line). Note: a "Senior SIEM Engineer (ELK/Sentinel)" req that multiple
   aggregators still surface is confirmed dead/closed (Jun/Sep 2026) — don't chase
-  that title, the live technical opening is the FedRAMP SRE req.
+  that title, the live technical opening is the FedRAMP SRE req. Reconfirmed live
+  again 2026-11-16.
+- **TENEX.AI** — Ashby org slug `tenex` (not `tenexai`/`tenex-ai` as previously
+  guessed in earlier runs — that's why the board was marked unresolvable before).
+  **NEW source, 2026-11-16.** AI-native MDR (managed detection and response)
+  provider; recurring candidate `fc7c5446-8d7d-4f8e-97fa-14a7e4ac3ad6` ("Staff
+  Site Reliability Engineer", Remote USA, Terraform+SIEM+Datadog). Per-job Ashby
+  detail endpoint 401s — use the list endpoint's `descriptionPlain` field instead.
+- **DigiCert** — Greenhouse token `digicert`. **NEW source, 2026-11-16.**
+  Recurring candidate `8885889002` ("Senior DevOps Engineer", US-Remote, Terraform
+  AND Ansible both named plus Splunk) — strongest IaC-tool match found this run.
+  `digicert.com` itself is egress-blocked; ship the Greenhouse-hosted URL
+  (`job-boards.greenhouse.io/digicert/jobs/8885889002`) as the apply link.
 
 ### Demoted to spot-check-only 2026-10-26 (5th consecutive non-qualifying run)
 
@@ -213,10 +244,10 @@ as a reliable recurring Seattle pick.
   automated-query rotation per the 3-strikes convention. Spot-check only if
   revisited; do not budget full-board pulls each run.
 - **BlackCloak** — Lever, slug `BlackCloak` (capitalized — case-sensitive, unusual
-  for Lever). 5 consecutive runs with zero DevOps/SRE/Cloud/Platform-titled reqs
-  at all (board is sales/CS/incident-responder titles only) — demoted from active
-  automated-query rotation per the 3-strikes convention. Spot-check only if
-  revisited.
+  for Lever). **Dropped from rotation entirely 2026-11-16** after an 8th
+  consecutive run with zero DevOps/SRE/Cloud/Platform-titled reqs (board remains
+  sales/CS/account-management only) — do not query automatically going forward;
+  revisit only on a specific fresh lead.
 
 ### Promising unvalidated leads (need a 2nd look — both main domains egress-blocked 2026-10-05)
 
@@ -227,6 +258,17 @@ as a reliable recurring Seattle pick.
 - **DigitalOcean** — "Staff Platform Engineer," **Seattle, WA**-based per snippet,
   Terraform/IaC modules named — a rare Seattle+Terraform combo worth chasing.
   `digitalocean.com` egress-blocked; no board found under guessed slugs.
+- **ScienceLogic** (new lead, 2026-11-16) — aggregator snippets (Built In,
+  WorkingNomads) point to a "Senior SRE, Observability" req (Terraform-adjacent,
+  Prometheus/CloudWatch/New Relic) that looks like a strong match, but the
+  Greenhouse token `sciencelogic` 404s at both the board level and the specific
+  job ID via WebFetch — token may be wrong or the board may be private/unlisted.
+  Needs a fresh from-scratch ATS lookup if revisited.
+- **Pondurance** (new lead, 2026-11-16) — "Senior Platform Engineer" (Terraform +
+  Linux + Datadog + GitHub Actions, Remote US) would be a strong match, but its
+  real ATS is JazzHR (`pondurance.applytojob.com`), which is egress-blocked this
+  session and has no public JSON API equivalent to Greenhouse/Lever/Ashby.
+  Unvalidatable this run — retry if the block lifts.
 
 ### Aggregators / boards
 
@@ -255,6 +297,20 @@ For WebSearch / Google:
 - Re-review this file quarterly — employers shut down hiring or change ATS hosts.
 - If a company appears 3+ runs in a row with no qualifying role, drop it.
 - Add new finds under the right section; keep alphabetical inside each group.
+
+### From 2026-11-16 run
+
+- **2 brand-new qualifying sources**: TENEX.AI (Ashby `tenex`, see Newly formalized section above) and DigiCert (Greenhouse `digicert`, see Newly formalized section above) — both found via a fresh discovery sweep, both shipped as top picks.
+- **Three previously-reliable sources went to zero this run**: Red Hat's formalized pick `R-060309-1` confirmed closed, Leidos's only remote pick `R-00196252` confirmed closed, and both of Zscaler's tracked picks dead/disqualified. See corrections above in each employer's entry. None of the three had a qualifying replacement found despite dedicated searches (Red Hat: broad terraform/ansible sweep; Leidos: 5 searchText variants; Zscaler: full-board check).
+- **Hut8 and BlackCloak recommended for full removal** from the rotation (Hut8: 2nd consecutive check with zero technical roles; BlackCloak: 8th consecutive non-qualifying run, structurally sales/CS-only) — see corrections above.
+- **Sysdig's long-tracked "Director of Security Engineering" is gone from the board entirely** — stop tracking.
+- **Garner Health's recurring "Senior SRE" pick is gone**, replaced only by two thin-stack Security Engineer twins, both held back as borderline.
+- **Palantir's Substrate req reconfirmed live for a 4th consecutive run** — remains the most reliable Seattle source alongside Okta (2 distinct Seattle picks shipped again this run).
+- **New leads chased and ruled out this run**: ScienceLogic (Greenhouse token/job ID 404s, unresolvable), Pondurance (real ATS is JazzHR, egress-blocked, unverifiable) — see Promising unvalidated leads section above.
+- **Octopus/Kraken**: 6th consecutive structural-zero run — recommend moving to monthly checks.
+- **Amazon/Microsoft/T-Mobile/Workiva/Shopify/GitHub**: egress/API issues persist an 8th+ consecutive run, no change.
+- **Paxos's per-job Ashby detail endpoint reverted to 401** — the 2026-11-09 "no longer 401s" note didn't hold; use the list endpoint instead going forward.
+- Reviewed 2026-11-09 → 2026-11-16.
 
 ### From 2026-11-09 run
 
