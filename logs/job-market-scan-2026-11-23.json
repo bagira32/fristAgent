@@ -1,0 +1,161 @@
+{
+  "run_id": "job-market-scan-2026-11-23",
+  "workflow": "job-market-scan",
+  "date": "2026-11-23",
+  "trigger": "scheduled weekly run",
+  "report": "output/job-market-scan-2026-11-23.md",
+  "results": {
+    "raw_hits_note": "Approximate count of reqs touched at board level across the 3 parallel collection forks, summed from each fork's reported per-source req counts (Datadog 387, Elastic 385, Grafana Labs 139, Canonical 318, Cloudflare 504, Stripe 778, Okta 374, Zscaler 388, GitLab 246, Reddit 149, Tenable 49, Fastly 48, Palantir 306, Crusoe 316, Hut8 47, Sunrun ~251, ChargePoint 42, Leidos multi-sweep ~316, DigitalOcean 132, Chainguard 110, Epic Games 139, Bugcrowd 11, Netlify 6, Stacklok 2, plus Garner Health/SmarterDx/Coalfire/TENEX.AI/DigiCert/Corelight and many smaller boards). This undercounts true scan volume since not every individual JD within large boards was opened — only keyword/title-matched candidates were read in full.",
+    "raw_hits_collected_approx": 6400,
+    "passed_all_locked_filters": 24,
+    "passed_all_locked_filters_fully_shippable": 24,
+    "passed_all_locked_filters_eligibility_gated_flagged": 8,
+    "final_shortlist_shipped": 15,
+    "dropped_after_curation_quality_or_redundancy": 9,
+    "dropped_after_filter_or_validation_approx": 6358,
+    "dropped_inconclusive_egress_or_unresolvable_ats_approx": 18,
+    "collection_method_note": "Three collection forks ran in parallel, each scoped to a disjoint slice of resources/sources.md: (1) cloud-native tech + Seattle-area majors, (2) energy-sector + Palantir/Leidos, (3) newly-formalized/promising-leads/aggregators + a fresh discovery sweep for brand-new sources. Each fork performed its own Step 3.5 live-URL validation inline (ATS JSON API primary, WebFetch fallback) and did not write any files or commit. The orchestrating main thread compiled all 3 forks' qualifying roles (24 total, no cross-fork duplicates this run), curated to 15 for quality/redundancy, wrote the report/log, updated resources/sources.md, attempted the dashboard update, and committed."
+  },
+  "token_usage": {
+    "note": "Exact figures for all 3 collection forks, taken directly from their completion notifications. Main-thread usage is not measurable precisely; proxy below.",
+    "subagents": [
+      { "label": "cloud-native tech + Seattle-area majors collection (fork)", "tokens": 155308, "tool_uses": 45, "duration_ms": 573757 },
+      { "label": "energy-sector + Palantir/Leidos collection (fork)", "tokens": 115778, "tool_uses": 42, "duration_ms": 302152 },
+      { "label": "newly-formalized/promising-leads/aggregators + discovery sweep collection (fork)", "tokens": 165143, "tool_uses": 67, "duration_ms": 407825 }
+    ],
+    "subagent_total_tokens": 436229,
+    "subagent_total_tool_uses": 154,
+    "main_thread_tool_calls_estimate": { "web_fetch": 0, "bash_curl_api_calls": 0, "web_search": 0, "note": "Main thread (orchestrator) made 0 direct curl/API calls this run -- all collection/filtering/Step-3.5 validation was performed by the 3 forks above. Main thread read sources.md/workflow/prior logs, compiled/curated 24 qualifying roles down to 15, wrote the report/log, edited resources/sources.md, and handled the dashboard update and commit." }
+  },
+  "timing": {
+    "step2_collection_minutes_approx": 9.6,
+    "step3_3.5_filter_and_validation_minutes_approx": "done inline during collection by each fork, not separately timed",
+    "step5_report_writing_minutes_approx": 6,
+    "note": "step2 wall-clock time approximated from the longest-running fork's duration_ms (~574s); the 3 forks ran concurrently rather than sequentially, so this is far less than the sum of their individual durations (~21 min serial equivalent)."
+  },
+  "source_coverage": {
+    "cloud_native_tech_and_seattle": {
+      "queried": ["Datadog","Elastic","Grafana Labs","Honeycomb","Cloudflare","Fastly","GitLab","GitHub","Red Hat","Canonical","SUSE","CrowdStrike","Wiz","Sysdig","Tenable","Palo Alto Networks","Snyk","Stripe","Shopify","Reddit","DuckDuckGo","Okta","Zscaler","Amazon","Microsoft","T-Mobile","F5 Networks","Nordstrom Tech","Workiva"],
+      "yielded_raw_hits": [
+        "Okta (374 reqs via Greenhouse, 3 hits: DBRE 7617976 shipped, SRE-EPG 8268917 shipped, Staff SRE 8385706 NEW held back redundant)",
+        "Cloudflare (504 reqs, 2 hits: Storage Platform 7629805 shipped, Kubernetes platform 8263016 upgraded-to-qualifying via new Remote-US option but held back redundant)",
+        "GitLab (246 reqs, 2 qualifying: Cloud Platform Engineer 8889193002 shipped, SRE Infrastructure Platforms AMER 8623389002 NEW held back redundant)",
+        "Wiz (106 reqs via Greenhouse wizinc, 1 shipped recurring: 4711762006)",
+        "CrowdStrike (Workday, R30292 reconfirmed live, detail endpoint clean 200 this run, shipped [US-CITIZEN])",
+        "F5 Networks (Workday, RP1038966 reconfirmed live 8th+ consecutive run, shipped [SEATTLE])",
+        "Red Hat (Workday, fresh sweep surfaced NEW lead R-060248 'Site Reliability Engineer' nationwide-US-remote, Ansible+observability but no Terraform + entry-level -- held back for quality; R-060411 reappeared retitled R-060411-2 with active TS/SCI clearance requirement, still fails observability filter)",
+        "Nordstrom Tech (NEW find R-898894 'Senior Identity Security Engineer' Seattle via working targeted keyword search /jobs?keyword=terraform -- held back, borderline on observability/SIEM filter)"
+      ],
+      "yielded_nothing": ["Datadog (387 reqs, 4 raw hits all presales/architect, 0 qualifying)","Elastic (385 reqs, 6 raw hits all Consulting Architect/generic, 0 qualifying)","Grafana Labs (139 reqs, 9 raw hits all presales/intl/weak-fit, 0 qualifying)","Honeycomb (19 reqs, 0 hits)","Canonical (318 reqs, 0 hits)","SUSE (0 results both terraform+ansible searches)","Tenable (49 reqs, 0 hits)","Snyk (Ashby, 0 qualifying)","Stripe (778 reqs, 2 raw hits both wrong-location, 0 qualifying, 3rd consecutive zero run)","Shopify (404, no board, 8th+ consecutive run)","GitHub (404, no board)","Reddit (149 reqs, 1 raw hit wrong-track ML role, 0 qualifying)","DuckDuckGo (0 hits)","Amazon/Microsoft/T-Mobile (egress-blocked, 9th+ consecutive run)","Workiva (Workday jobs-search still 422, 9th consecutive run)","Zscaler (388 reqs, 25 raw hits all held back -- manager-tier, state-restricted-remote, or onsite -- 2nd consecutive zero-qualifying run)","Sysdig (Lever, 35 reqs, Director of Security Engineering confirmed fully gone from board, 0 qualifying)","Palo Alto Networks (40 matching reqs, all presales/architect/onsite/intl, 0 qualifying)","Fastly (48 reqs -- TOP PICK 8256238 CONFIRMED DEAD/404, 6 remaining raw hits all city-specific-onsite or international, 0 qualifying)"]
+    },
+    "energy_sector_and_palantir_leidos": {
+      "queried": ["Octopus Energy/Kraken","Crusoe Energy","Hut8","Sunnova","Sunrun","Duke Energy","Tesla Energy","Siemens Energy","EVgo","Enphase","David Energy","Exelon","Schneider Electric","Arcadia","Constellation Energy","NextEra Energy","ChargePoint","Palantir","Leidos"],
+      "yielded_raw_hits": [
+        "Palantir (Lever, 306 postings, 1 shipped TOP PICK: Senior Software Engineer Substrate c38bb622-6f8e-43a1-8ae7-32291da328a8, 5th consecutive live run; rescanned all 11 Seattle-WA postings including 'lists' JSON fields this time, no other Seattle req qualifies)",
+        "Crusoe Energy (Ashby, 316 reqs -- 2 hits: Senior Staff Automation Engineer ab5a5395-5480-4731-9053-3906b0f92f23 [ENERGY][SEATTLE] shipped TOP PICK, Senior Software Engineer Platform Networking d0a11984-9ed0-42e1-99af-e63113b3681c NEW held back weaker fit)",
+        "Leidos (Workday, 6 searchText sweeps -- 3 NEW qualifying remote-US clearance-gated roles found: Senior Network Support Engineer Remote R-00196293 held back weakest, Cryptography & Security Infrastructure Engineer Mid R-00197465 shipped, Orchestration Application Performance Engineer Mid R-00197276 shipped TOP PICK strongest match; recovers Leidos from zero last run)"
+      ],
+      "yielded_nothing": ["Octopus Energy/Kraken (Lever, quick existence check only per monthly-cadence decision -- board confirmed still alive/responding, UK/EU content, not fully scanned)","Hut8 (Greenhouse, 47 reqs, confirmed ZERO technical roles for a 3rd consecutive check -- 100% Miami FL legal/finance/data-center-build -- formally dropped from rotation this run)","Sunnova (2 reqs, 0 qualifying)","Sunrun (Workday, searchText 'terraform ansible' total:0)","Duke Energy (Workday, searchText 'terraform ansible' total:0)","Tesla Energy (403, 10th+ consecutive run)","Siemens Energy, EVgo, Enphase, David Energy (all egress-blocked, no change)","Exelon (icims.com blocked, no change)","Schneider Electric (careers.se.com blocked, no change)","Constellation Energy, NextEra Energy (Workday tenant guesses still 422, unresolved)","ChargePoint (42 reqs, 0 qualifying -- all sales/marketing remote roles this run)","Arcadia (Lever slug 'arcadia' now resolves to a DIFFERENT unrelated healthcare-analytics company arcadia.io -- the energy-sector Arcadia lead remains dead/unresolved)","Crusoe's prior recurring pick 'Senior Production Engineer, Storage' fb0c1911-c752-49df-84ef-4ff5309e8590 confirmed DIED, absent from current 316-job board entirely"]
+    },
+    "new_leads_promising_and_aggregators": {
+      "queried": ["SmarterDx","Garner Health","Paxos","Aalyria/Rippling","DigitalOcean","Epic Games","Qlik","Experian","Coalfire","TENEX.AI","DigiCert","Stellar Cyber","Netlify","Stacklok","Bugcrowd","ScienceLogic","Pondurance","Chainguard","remote.com","Blackpoint Cyber","LinkedIn Jobs","fresh discovery sweep (13 queries)"],
+      "yielded_raw_hits": [
+        "SmarterDx (Greenhouse, 1 hit recurring: Senior Security Engineer, Security Automation 5204868007 -- title drifted slightly, same req ID, still live, held back this run for shortlist-size curation)",
+        "Coalfire (Lever, 1 shipped recurring: Senior SRE FedRAMP e2620778-f8e9-4b22-910e-ae0edfcc8238 -- JD reworded, Terraform/SIEM moved to 'Bonus Points' section but still explicitly named)",
+        "TENEX.AI (Ashby, 1 shipped recurring: Staff SRE fc7c5446-8d7d-4f8e-97fa-14a7e4ac3ad6, unchanged)",
+        "DigiCert (Greenhouse, 1 shipped recurring: Senior DevOps Engineer 8885889002, unchanged)",
+        "Garner Health (Greenhouse, 1 hit NEW replacement pick: Senior Staff Site Reliability Engineer 6261236004, Terraform+Grafana/OpenSearch -- held back, title/body JD inconsistency flagged)",
+        "Corelight (Greenhouse, NEW qualifying source this run: Sr Software Engineer Cloud Infrastructure/SRE 8369707 shipped TOP PICK, found via fresh discovery sweep query #6, org slug `corelight`)",
+        "DigitalOcean (Greenhouse token FINALLY RESOLVED: `digitalocean98`, 132 reqs reviewed, 0 qualifying this run but now trackable going forward instead of treated as egress-blocked)"
+      ],
+      "yielded_nothing": [
+        "Paxos (Ashby, spot-check, 1 near-miss -- strong SIEM/detection-engineering but zero Terraform/Ansible, 9th consecutive non-qualifying run)",
+        "Aalyria/Rippling, Qlik, Experian, Stellar Cyber (all egress-blocked/unresolvable, no change)",
+        "Epic Games (full 139-req board swept, only onsite Cary NC match, fails location filter, unchanged)",
+        "Chainguard (NEW company checked, 110 reqs, all appsec/product-security titled, no Terraform/Ansible/SIEM/observability keyword in the one reviewed, not pursued further)",
+        "Netlify (Greenhouse, 6 reqs total, 0 SRE/DevOps titles -- stale aggregator-surfaced lead 7796861002 confirmed 404/gone)",
+        "Stacklok (Greenhouse, 2 reqs total, reconfirmed dead end from 2026-11-02)",
+        "Bugcrowd (Greenhouse, 11 reqs, stale lead 7435562 confirmed 404, no SRE/DevOps titles)",
+        "ScienceLogic (Greenhouse token still 404s at board AND for 4 separate job-ID guesses -- essentially exhausted under this ATS guess)",
+        "Pondurance (real ATS is JazzHR, still egress-blocked; a new strong-looking lead found via WebSearch could not be validated live, NOT shipped per the mandatory validation rule)",
+        "remote.com (NEW lead chased and ruled out -- no resolvable Greenhouse token found across 5 guesses, main domain egress-blocked)",
+        "Blackpoint Cyber (NEW promising lead -- multiple Terraform-naming remote Senior SRE reqs surfaced via aggregator, but real ATS token not found, only VC-portfolio mirror links at jobs.accel.com -- not validatable, not shipped)",
+        "LinkedIn (0 direct linkedin.com/jobs URLs across 2 query variants, 9th+ consecutive structural indexing gap)"
+      ]
+    }
+  },
+  "sites_visited": [
+    { "url": "job-boards.greenhouse.io/corelight/jobs/8369707", "method": "WebFetch", "status": "200 LIVE", "outcome": "pass, new source" },
+    { "url": "careers.nordstrom.com/jobs?keyword=terraform", "method": "WebFetch", "status": "200", "outcome": "1 hit found, lighter-weight than prior full crawls" },
+    { "url": "careers.nordstrom.com/senior-identity-security-engineer/job/6315CA64EAE52DBE095C95361E57533D", "method": "WebFetch", "status": "200 LIVE", "outcome": "pass on filters 1/3, borderline on filter 2, held back" },
+    { "url": "jobs.lever.co/palantir/c38bb622-6f8e-43a1-8ae7-32291da328a8", "method": "WebFetch", "status": "200 LIVE", "outcome": "pass, top pick" },
+    { "url": "leidos.wd5.myworkdayjobs.com/External/job/.../R-00196293, R-00197465, R-00197276", "method": "WebFetch", "status": "empty SPA render", "outcome": "inconclusive, fell back to Workday API" },
+    { "url": "boards-api.greenhouse.io/v1/boards/fastly/jobs/8256238", "method": "curl", "status": "404", "outcome": "confirmed TOP PICK dead" },
+    { "url": "jobs.lever.co/arcadia", "method": "curl", "status": "200", "outcome": "wrong-company board (arcadia.io healthcare, not energy Arcadia)" },
+    { "url": "www.tesla.com/careers/search/?query=terraform", "method": "curl", "status": "403", "outcome": "blocked, 10th+ consecutive run" },
+    { "url": "jobs.siemens-energy.com, www.evgo.com, careers.enphase.com, www.davidenergy.com, careers-exeloncorp.icims.com, careers.se.com", "method": "curl", "status": "000 (connect_rejected/ENOTFOUND)", "outcome": "egress-blocked, no change" },
+    { "url": "ats.rippling.com, apply.workable.com, jobs.workable.com, wellfound.com, pondurance.applytojob.com, api.smartrecruiters.com, careers.experian.com", "method": "WebFetch/curl", "status": "ENOTFOUND/000", "outcome": "egress-blocked, no change" }
+  ],
+  "api_hits": [
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/corelight/jobs/8369707", "ats": "Greenhouse", "status": "200", "outcome": "shipped, NEW qualifying source" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/digitalocean98/jobs (132 reqs, NEW resolved token)", "ats": "Greenhouse", "status": "200", "outcome": "ATS resolved, 0 qualifying this run" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/okta/jobs?content=true (374 reqs)", "ats": "Greenhouse", "status": "200", "outcome": "3 hits: 7617976, 8268917 shipped; 8385706 NEW held back redundant" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/cloudflare/jobs?content=true (504 reqs)", "ats": "Greenhouse", "status": "200", "outcome": "2 hits: 7629805 shipped; 8263016 upgraded-to-qualifying, held back redundant" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/gitlab/jobs?content=true (246 reqs)", "ats": "Greenhouse", "status": "200", "outcome": "2 qualifying: 8889193002 shipped; 8623389002 NEW held back redundant" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/wizinc/jobs?content=true (106 reqs)", "ats": "Greenhouse", "status": "200", "outcome": "1 shipped (4711762006)" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/fastly/jobs?content=true + /8256238", "ats": "Greenhouse", "status": "200 / 404", "outcome": "top pick confirmed dead, 0 qualifying replacement" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/{datadog,elastic,grafanalabs,honeycomb,canonical,tenableinc,reddit,stripe,zscaler}/jobs", "ats": "Greenhouse", "status": "200", "outcome": "0 qualifying across all" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/{github,shopify}/jobs", "ats": "Greenhouse", "status": "404", "outcome": "no board, unchanged" },
+    { "endpoint": "api.lever.co/v0/postings/sysdig?mode=json", "ats": "Lever", "status": "200", "outcome": "35 postings, 0 qualifying, Director of Security Engineering fully gone" },
+    { "endpoint": "api.ashbyhq.com/posting-api/job-board/{snyk,duck-duck-go}", "ats": "Ashby", "status": "200", "outcome": "0 qualifying" },
+    { "endpoint": "redhat.wd5.myworkdayjobs.com/.../jobs (9 searchText variants) + 4 job-detail GETs", "ats": "Workday", "status": "200", "outcome": "NEW lead R-060248 found (held back, quality); R-060411-2 confirmed still failing filter 2" },
+    { "endpoint": "suse.wd3.myworkdayjobs.com/.../jobs (terraform, ansible)", "ats": "Workday", "status": "200", "outcome": "total:0 both" },
+    { "endpoint": "crowdstrike.wd5.myworkdayjobs.com/.../job/.../R30292", "ats": "Workday", "status": "200", "outcome": "shipped, detail endpoint clean this run (no 403 flake)" },
+    { "endpoint": "paloaltonetworks.wd5.myworkdayjobs.com/.../jobs (POST terraform+ansible) + job detail", "ats": "Workday", "status": "200", "outcome": "0 qualifying, all presales/onsite/intl" },
+    { "endpoint": "ffive.wd5.myworkdayjobs.com/.../job/Seattle/...RP1038966", "ats": "Workday", "status": "200", "outcome": "shipped, 8th+ consecutive run" },
+    { "endpoint": "workiva.wd1.myworkdayjobs.com/.../jobs", "ats": "Workday", "status": "422", "outcome": "unresolved, 9th consecutive run" },
+    { "endpoint": "api.lever.co/v0/postings/palantir?mode=json (306 postings)", "ats": "Lever", "status": "200", "outcome": "1 shipped top pick, 5th consecutive run" },
+    { "endpoint": "api.ashbyhq.com/posting-api/job-board/Crusoe (316 reqs)", "ats": "Ashby", "status": "200", "outcome": "2 hits, 1 shipped top pick, 1 NEW held back weaker; prior pick fb0c1911 confirmed dead" },
+    { "endpoint": "api.lever.co/v0/postings/octoenergy?mode=json", "ats": "Lever", "status": "200", "outcome": "existence-check only per monthly cadence, board alive" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/hut8/jobs (47 reqs)", "ats": "Greenhouse", "status": "200", "outcome": "confirmed zero technical roles, 3rd consecutive check, formally dropped" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/{sunnova,chargepoint}/jobs", "ats": "Greenhouse", "status": "200", "outcome": "0 qualifying each" },
+    { "endpoint": "sunrun.wd5.myworkdayjobs.com/.../jobs, dukeenergy.wd1.myworkdayjobs.com/.../jobs", "ats": "Workday", "status": "200", "outcome": "total:0 each" },
+    { "endpoint": "constellation.wd1.myworkdayjobs.com, nexteraenergy.wd1.myworkdayjobs.com (tenant guesses)", "ats": "Workday", "status": "422", "outcome": "tenant slug still unresolved" },
+    { "endpoint": "leidos.wd5.myworkdayjobs.com/.../jobs (6 searchText variants) + 11 job-detail GETs", "ats": "Workday", "status": "200", "outcome": "3 NEW qualifying roles found (R-00196293, R-00197465, R-00197276), 2 shipped" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/smarterdx/jobs/5204868007", "ats": "Greenhouse", "status": "200", "outcome": "reconfirmed live, held back for curation" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/garnerhealth/jobs (list + 6261236004 + 6238004004 + 6200743004)", "ats": "Greenhouse", "status": "200", "outcome": "NEW replacement pick found, held back for JD-consistency flag" },
+    { "endpoint": "api.ashbyhq.com/posting-api/job-board/paxos", "ats": "Ashby", "status": "200", "outcome": "0 qualifying, 9th consecutive non-qualifying run" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/{netlify,stacklok,bugcrowd,chainguard,sciencelogic}/jobs (+specific ids)", "ats": "Greenhouse", "status": "200/404 mix", "outcome": "all confirmed fresh dead ends or 0 qualifying" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/{remotecom,remote,remote-com,theremotecompany,remotecompany}/jobs", "ats": "Greenhouse", "status": "404/200 mix", "outcome": "unresolvable, correct token not found" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/epicgames/jobs (139 reqs)", "ats": "Greenhouse", "status": "200", "outcome": "0 qualifying, unchanged" },
+    { "endpoint": "api.ashbyhq.com/posting-api/job-board/tenex", "ats": "Ashby", "status": "200", "outcome": "1 shipped, reconfirmed" },
+    { "endpoint": "boards-api.greenhouse.io/v1/boards/digicert/jobs/8885889002", "ats": "Greenhouse", "status": "200", "outcome": "1 shipped, reconfirmed" },
+    { "endpoint": "api.lever.co/v0/postings/coalfire?mode=json", "ats": "Lever", "status": "200", "outcome": "1 shipped, reconfirmed (JD reworded)" }
+  ],
+  "sources_md_updates_applied": [
+    "Added: Corelight as a NEW formalized source -- Greenhouse token `corelight`. Recurring candidate: 8369707 ('Sr Software Engineer, Cloud Infrastructure/SRE', North America/must-be-US, Terraform+Kubernetes+Prometheus+Grafana, FedRAMP-context). Tag [US-CITIZEN]. Found via fresh discovery sweep.",
+    "Resolved: DigitalOcean's ATS mystery -- the correct Greenhouse token is `digitalocean98`, not a guessable plain 'digitalocean' (explains 5+ runs of failure). 132 reqs reviewed, 0 qualifying SRE/DevOps/Platform-titled roles this run, but the token is now directly queryable going forward instead of treating DigitalOcean as egress-blocked/unresolvable.",
+    "Corrected: Fastly's long-standing TOP PICK req 8256238 ('Software Engineer, Platform Observability and Intelligence') is now CONFIRMED CLOSED (404, absent from the live 48-job board). No replacement of similar stack quality found -- its 6 remaining Terraform/observability-matching reqs are all city-specific-onsite or international.",
+    "Corrected: Crusoe Energy's prior recurring pick 'Senior Production Engineer, Storage' (fb0c1911-c752-49df-84ef-4ff5309e8590) is confirmed DIED -- absent from the current 316-job Ashby board entirely by both ID and title search. Remove this dead pick permanently. New weaker-fit alternative found this run: 'Senior Software Engineer, Platform Networking' (d0a11984-9ed0-42e1-99af-e63113b3681c, Bellevue WA secondary location, Terraform/Ansible only nice-to-have, network telemetry not security telemetry) -- held back, worth re-evaluating if a stronger Crusoe pick doesn't surface.",
+    "Corrected: Leidos's dead recurring pick R-00196252 and its weak replacement R-00193640 are superseded -- a fresh full remote-facet sweep (6 searchText variants) found 3 NEW qualifying remote-US roles this run: 'Senior Network Support Engineer Remote' (R-00196293, Elastic+Grafana, weakest), 'Cryptography & Security Infrastructure Engineer - Mid-Level' (R-00197465, Terraform+Ansible+SIEM), and 'Orchestration Application Performance Engineer - Mid' (R-00197276, Terraform+Ansible+SIEM+Splunk+Elastic+telemetry, strongest). All three require an ACTIVE DoD Secret clearance + US citizenship at hire -- tag [CLEARANCE-ACTIVE][US-CITIZEN]. Track all 3 IDs going forward; this is Leidos's best showing in several runs.",
+    "Dropped: Hut8 confirmed ZERO technical roles for a 3rd consecutive check (board remains 100% Miami FL legal/finance/data-center-build) -- formally removed from active rotation. Spot-check only if a specific fresh lead resurfaces via aggregator/LinkedIn.",
+    "Noted: Red Hat's board shows signs of life again -- fresh sweep found a genuine new nationwide-US-remote lead, 'Site Reliability Engineer' (R-060248, Ansible+Linux+K8s+Python+generic observability), held back this run only for quality (no Terraform named, entry/mid-level 2yr exp, below candidate's senior profile) -- worth tracking as Red Hat's clearest live lead in 2 runs. Separately, R-060411 reappeared retitled 'R-060411-2' with an explicit active TS/SCI clearance requirement added, but still fails the observability/SIEM filter -- still not shippable on the merits.",
+    "Noted: CrowdStrike's R30292 per-job Workday detail endpoint returned a clean HTTP 200 this run with no 403 flake -- consistent with it being a normal working Workday source now rather than needing special-case handling.",
+    "Noted: GitLab's board yielded a 2nd genuine Terraform+observability pick this run -- 'SRE, Infrastructure Platforms AMER' (8623389002) -- held back this run as redundant with the shipped Cloud Platform Engineer pick, but worth tracking as a 2nd recurring-watch candidate alongside 8889193002.",
+    "Noted: Okta's board yielded a 3rd genuine Terraform+FedRAMP pick this run -- 'Staff Site Reliability Engineer' (8385706), same Bellevue team as the shipped EPG pick -- held back as redundant this run, worth tracking as a 3rd recurring-watch candidate.",
+    "Noted: Cloudflare's 'Senior Software Engineer - Kubernetes platform' (8263016) now carries a Remote-US location option (previously Hybrid/Distributed-only without it), upgrading it from held-back to filter-qualifying -- held back this run only as redundant with the shipped Cloudflare Storage Platform pick.",
+    "Noted: Garner Health's recurring pick changed -- the prior 'Senior SRE' req is gone; new replacement 'Senior Staff Site Reliability Engineer' (6261236004, Terraform+Grafana/OpenSearch) found, but its Greenhouse title field ('SRE') doesn't match the JD body's opening line ('Senior Staff Platform Engineer') -- a JD inconsistency flagged for confirmation, held back this run pending that.",
+    "Noted: Nordstrom's on-page keyword search (`/jobs?keyword=terraform`) actually worked this run without exceeding the time budget -- a single targeted query, not the previously-abandoned full 139-page crawl. Recommend adopting this lighter-weight approach going forward. Found 'Senior Identity Security Engineer' (R-898894, Seattle, Terraform explicit) but it's borderline on the observability/SIEM filter (ITDR/ITSM/KQL only, no named SIEM/SOAR/Datadog/Splunk/Elastic/Grafana term) -- held back pending a clearer match, not shipped on a close call.",
+    "Noted: SmarterDx's recurring pick (5204868007) reconfirmed live with a slightly drifted title ('Senior Security Engineer, Security Automation') but same req ID -- held back purely for shortlist-size curation this run given an unusually strong week; not a quality or source issue.",
+    "Added as new unresolved promising lead: Blackpoint Cyber -- multiple Terraform-naming remote Senior SRE reqs surfaced via aggregator, but real ATS token not found (only VC-portfolio mirror links at jobs.accel.com found) -- worth a dedicated from-scratch ATS lookup next run.",
+    "Noted: Netlify, Stacklok, Bugcrowd, ScienceLogic all re-investigated fresh this run and confirmed to have zero live qualifying (or zero SRE-titled at all) roles, not just egress/unresolved issues -- can be deprioritized fully as leads.",
+    "Noted: new lead chased and ruled out this run -- 'remote.com' (no resolvable Greenhouse token found across 5 guesses, main domain still egress-blocked).",
+    "Noted: Zscaler shipped zero for a 2nd consecutive run (25 raw hits, all manager-tier/state-restricted-remote/onsite) -- structural pattern continuing, not a validation gap.",
+    "Noted: Arcadia's Lever slug `arcadia` now resolves to a DIFFERENT, unrelated healthcare-data-analytics company (arcadia.io) -- the energy-sector Arcadia lead remains dead/unresolved; this distinction should prevent future false-positive confusion.",
+    "Noted: Octopus/Kraken's board confirmed still alive via a quick existence check only (not fully scanned, per the 2026-11-16 decision to move to monthly cadence) -- next full check due roughly mid-December.",
+    "Noted: Tesla Energy 403 for a 10th+ consecutive run -- strong case to finalize as a permanent skip rather than a weekly retry, though not yet formally removed from the source list this run.",
+    "Noted: LinkedIn's site:linkedin.com/jobs indexing gap persists for a 9th+ consecutive run -- structural, unchanged.",
+    "Noted: Amazon/Microsoft/T-Mobile/Workiva egress/API issues persist a 9th consecutive run."
+  ],
+  "dashboard_update": "Attempted per workflow Step 8: read all files under logs/ (2026-09-09 through 2026-11-23, 13 runs total) and republished the combined dataset to the dashboard Artifact URL in resources/monitor.md."
+}
